@@ -22,6 +22,7 @@
   "devDependencies": {
     "auto-reload-brunch": ">= 1.0 < 1.9",
     "autoprefixer": "^6.2.3",
+    "babel-brunch": "^6.0.0",
     "clean-css-brunch": ">= 1.0 < 1.9",
     "css-brunch": ">= 1.0 < 1.9",
     "javascript-brunch": ">= 1.0 < 1.9",
