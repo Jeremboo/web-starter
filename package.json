@@ -1,20 +1,29 @@
 {
   "name": "web-starter",
   "version": "1.0.0",
-  "description": "My organization for web developpement.",
+  "description": "My organization for web developpement with brunch.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jeremboo/web-starter"
+    "url": "https://github.com/Jeremboo/web-starter/tree/brunch"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "brunch watch --server"
+  },
   "keywords": [
     "starter",
     "kit",
     "html5",
-    "web"
+    "web",
+    "brunch"
   ],
   "author": "Jérémie Boulay <jeremi.boulay@gmail.com>",
   "license": "ISC",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "javascript-brunch": ">= 1.0 < 1.9",
+    "css-brunch": ">= 1.0 < 1.9",
+    "uglify-js-brunch": ">= 1.0 < 1.9",
+    "clean-css-brunch": ">= 1.0 < 1.9",
+    "auto-reload-brunch": ">= 1.0 < 1.9"
+  }
 }

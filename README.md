@@ -1,8 +1,11 @@
-# My web app starter kit
+# My web app starter kit with Brunch 2.1
 
-Just a architecture to manage a web project. There is not builder, libraries or other post Processor on master branch.
-Please look at other branchs
+Just a architecture to manage a web project with [brunch.io]().
 
 ## Details :
+
+**Soon**
+
+## Getting Started :
 
 **Soon**
