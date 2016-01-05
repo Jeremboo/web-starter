@@ -7,7 +7,9 @@
     "url": "https://github.com/Jeremboo/web-starter/tree/brunch"
   },
   "scripts": {
-    "start": "brunch watch --server"
+    "start": "brunch w -s",
+    "build" : "rm -rf public/ && brunch b -p",
+    "deploy" : "npm install && npm run build"
   },
   "keywords": [
     "starter",
