@@ -9,7 +9,7 @@ module.exports = {
     vendors: ['react', 'react-dom']
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../public'),
     filename: 'bundle.js'
   },
   module: {
@@ -22,16 +22,18 @@ module.exports = {
       },
     },
     {
-      test: /\.scss$/,
-      loader: 'style!css!sass!postcss'
+      test: /\.styl$/,
+      loader: 'style!css!stylus'
     },
     {
       test: /\.(png|jpe?g|gif|svg)$/,
-      loader: 'file?name=img/[name].[ext]',
+      loader: 'file?name=imgs/[name].[ext]',
+      include: path.resolve(__dirname, '../app/assets/imgs')
     },
     {
       test: /\.(eot|svg|ttf|woff)$/,
       loader: 'file?name=fonts/[name].[ext]',
+      include: path.resolve(__dirname, '../app/assets/fonts')
     }]
   },
   postcss: function () {

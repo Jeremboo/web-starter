@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+//var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var poststylus = require('poststylus');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
@@ -19,9 +21,11 @@ var config = {
         alias: {}
     },
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, '../public'),
         filename: 'bundle.js',
+        publicPath: '/'
     },
+    devtool: "sourcemap",
     module: {
       noParse: [],
       loaders: [
@@ -34,27 +38,33 @@ var config = {
           },
         },
         {
-          test: /\.scss$/,
-          loader: 'style!css!sass!postcss'
+          test: /\.styl$/,
+          //loader: ExtractTextPlugin.extract('style!css?sourceMap!stylus?sourceMap')
+          loader: 'style!css!stylus'
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,
-          loader: 'file?name=img/[name].[ext]',
+          loader: 'file?name=imgs/[hash].[ext]',
+          include: path.resolve(__dirname, '../app/assets/imgs')
         },
         {
           test: /\.(eot|svg|ttf|woff)$/,
-          loader: 'file?name=fonts/[name].[ext]',
+          loader: 'file?name=fonts/[hash].[ext]',
+          include: path.resolve(__dirname, '../app/assets/fonts')
         }
       ],
     },
-    postcss: function () {
-        return [require('autoprefixer')];
+    stylus: {
+      use: [
+        poststylus(['autoprefixer'])
+      ]
     },
     plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
       new HtmlWebpackPlugin({
         template: './app/assets/index.html'
       })
+      // new ExtractTextPlugin("styles.css")
     ]
 };
 
