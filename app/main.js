@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Hello from './components/Hello/Hello';
+import Root from "./router";
 
-ReactDOM.render(<Hello />, app);
+// Enable react dev-tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+window.React = React;
+
+ReactDOM.render(<Root />, app);
