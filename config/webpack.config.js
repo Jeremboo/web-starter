@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-//var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var poststylus = require('poststylus');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
@@ -25,12 +24,12 @@ var config = {
         filename: 'bundle.js',
         publicPath: '/'
     },
-    devtool: "sourcemap",
+    devtool: "#inline-source-map",
     module: {
       noParse: [],
       loaders: [
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           exclude: /(node_modules)/,
           loader: 'babel-loader',
           query: {
@@ -38,9 +37,16 @@ var config = {
           },
         },
         {
+          test: /\.css$/,
+          loader: 'style!css'
+        },
+        {
           test: /\.styl$/,
-          //loader: ExtractTextPlugin.extract('style!css?sourceMap!stylus?sourceMap')
           loader: 'style!css!stylus'
+        },
+        {
+          test: /\.json$/,
+          loader: 'json'
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,
@@ -64,7 +70,6 @@ var config = {
       new HtmlWebpackPlugin({
         template: './app/assets/index.html'
       })
-      // new ExtractTextPlugin("styles.css")
     ]
 };
 

@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var node_modules_dir = path.resolve(__dirname, '../node_modules');
+var poststylus = require('poststylus');
 
 module.exports = {
   entry:{
@@ -22,6 +23,10 @@ module.exports = {
       },
     },
     {
+      test: /\.css$/,
+      loader: 'style!css'
+    },
+    {
       test: /\.styl$/,
       loader: 'style!css!stylus'
     },
@@ -36,8 +41,10 @@ module.exports = {
       include: path.resolve(__dirname, '../app/assets/fonts')
     }]
   },
-  postcss: function () {
-      return [require('autoprefixer')];
+  stylus: {
+    use: [
+      poststylus(['autoprefixer'])
+    ]
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
