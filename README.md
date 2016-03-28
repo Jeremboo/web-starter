@@ -1,11 +1,13 @@
 # My web app starter kit with Webpack and React
 
-Just a architecture to manage a web project with [webpack](), [React](), [ES6]() and [SASS]().
+Just a architecture to manage a web project with :
 
-## Getting Started :
+- [Webpack]()
+- [Babel]()
+- [Stylus]()
+- [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 
-- Install  (if you don't have them) :
-  - **Soon**
+- [React]()
 
 ## Commands :
 
@@ -16,3 +18,15 @@ Just a architecture to manage a web project with [webpack](), [React](), [ES6]()
 ## Details :
 
 **Soon**
+
+## TODO
+
+- **Mocha :** test runner
+
+- **Chai :** assertion
+
+- **Enzyme :** React testing library.
+
+- ** Webpack Extract text plugging**
+
+- **Alt Data manager**

@@ -1,18 +1,17 @@
-import React from "react";
-import { Router, Route, browserHistory, Link } from 'react-router';
+import React from 'react';
 
 export default class Layout extends React.Component {
-	constructor(props) {
-	    super(props);
-	}
 
-	componentDidMount(){}
+  componentDidMount() {
 
-	render() {
-		return (
-			<div id="layout">
-				{ this.props.children }
-		  </div>
-		);
-	}
+  }
+
+  render() {
+    return (
+      <div id="layout">
+        { this.props.children }
+      </div>
+    );
+  }
 }
+Layout.propTypes = { children: React.PropTypes.node };
