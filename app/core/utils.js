@@ -1,5 +1,5 @@
-class Util {
+const util = {
 
-}
+};
 
-module.exports = new Util();
+module.exports = util;

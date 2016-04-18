@@ -1,13 +1,16 @@
-# My web app starter kit with Webpack and React
+# My web app starter kit only with NPM script
 
 Just a architecture to manage a web project with :
 
-- [Webpack]()
+- [Npm]()
 - [Babel]()
 - [Stylus]()
 - [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 
-- [React]()
+- ...
+
+## Inspired to [starter-npm](https://github.com/JeremieDrazic/starter-npm) by [Jérémie Drazic](https://github.com/JeremieDrazic).
+
 
 ## Commands :
 
@@ -17,11 +20,6 @@ Just a architecture to manage a web project with :
 
 ## Details :
 
-- **Webpack with :**
-  - `dev`and `prod` environment
-  - Auto reloading
-  - ...
-
 - **Babel for using ES6.**
 
 - **Style Guide :**
@@ -29,15 +27,3 @@ Just a architecture to manage a web project with :
 Follow the [AirBnb Javascript Style Guide](https://github.com/airbnb/javascript) with her
 Eslint. You can also follow her
 [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
-
-## TODO
-
-- **Mocha :** test runner
-
-- **Chai :** assertion
-
-- **Enzyme :** React testing library.
-
-- ** Webpack Extract text plugging**
-
-- **Alt Data manager**
