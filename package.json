@@ -1,16 +1,19 @@
 {
   "name": "web-starter",
   "version": "1.0.0",
-  "description": "My organization for web developpement only with npm script.",
+  "description": "My organization for web developpement only with npm scripts.",
   "main": "app/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jeremboo/web-starter/tree/npm"
   },
   "scripts": {
-    "start": "npm run stylus & npm run budo",
-    "budo": "budo app/main.js --live --dir ./public --open -- -t [babelify --presets [ es2015 ] ]",
-    "stylus": "stylus -w app/main.styl -u autoprefixer-stylus -o public/style.css"
+    "start": "npm run css:dev & npm run js:dev",
+    "js:dev": "budo app/main.js --live --dir ./public --open -- -t [babelify --presets [ es2015 ] ]",
+    "css:dev": "stylus -w app/main.styl -u autoprefixer-stylus -o public/style.css",
+    "build": "npm run css:build & npm run js:build",
+    "js:build": "browserify -t [babelify --presets [ es2015 ] ] app/main.js -o public/main.js && uglifyjs public/main.js -c -o public/main.js",
+    "css:build": "stylus -w app/main.styl -u autoprefixer-stylus -c -o public/style.css"
   },
   "keywords": [
     "starter",

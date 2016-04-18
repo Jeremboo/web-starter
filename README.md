@@ -2,7 +2,7 @@
 
 Just a architecture to manage a web project with :
 
-- [Npm]()
+- [Npm scripts](https://docs.npmjs.com/misc/scripts)
 - [Budo](https://github.com/mattdesl/budo)
 - [Babel]()
 - [Stylus]()
@@ -16,6 +16,8 @@ Just a architecture to manage a web project with :
 
 
 ## Commands :
+
+- `npm install` for installing dependencies.
 
 - `npm start` for starting the development with auto reloading.
 
