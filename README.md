@@ -3,16 +3,14 @@
 Just a architecture to manage a web project with :
 
 - [Npm scripts](https://docs.npmjs.com/misc/scripts)
-- [Budo](https://github.com/mattdesl/budo)
 - [Babel]()
-- [Stylus]()
+- [Nodemon]()
 - [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 - ...
 
 ## Inspiration
 
- - [starter-npm](https://github.com/JeremieDrazic/starter-npm) by [Jérémie Drazic](https://github.com/JeremieDrazic).
- - [starter-es6-react](https://github.com/ziiw/starter-es6-react) by [Adrien Lavisiera](https://github.com/ziiw).
+ - [Example node server with babel](https://github.com/babel/example-node-server)
 
 
 ## Commands :
@@ -21,15 +19,18 @@ Just a architecture to manage a web project with :
 
 - `npm start` for starting the development with auto reloading.
 
-- `npm run build` for having a `public/` production directory.
+- `npm run deploy` for build and starting the server.
+
+#### Other commands :
+
+- `npm run build` for having a `public`repository able to be used with node.
+
+- `npm run server` for starting the server.
+
 
 ## Details :
 
 - **Babel for using ES6.**
-
-- **Budo for live reloading.**
-
-- **Style Guide :**
 
 Follow the [AirBnb Javascript Style Guide](https://github.com/airbnb/javascript) with her
 Eslint. You can also follow her

@@ -7,8 +7,8 @@
 
 export default class Hello {
 
-  constrcutor() {
-    this.message = 'HelloWorld';
+  constructor() {
+    this.message = 'Hello World';
   }
 
   sayHello() {
