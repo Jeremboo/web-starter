@@ -8,19 +8,19 @@ Multiple starters for many web utilities.
 
 ### Npm
 
-`git clone -b npm https://github.com/bourrulebarbu/web-starter`
+`git clone -b npm https://github.com/Jeremboo/web-starter`
 
 ### Brunch
 
-`git clone -b brunch https://github.com/bourrulebarbu/web-starter`
+`git clone -b brunch https://github.com/Jeremboo/web-starter`
 
 ### Webpack - React
 
-`git clone -b webpack-react https://github.com/bourrulebarbu/web-starter`
+`git clone -b webpack-react https://github.com/Jeremboo/web-starter`
 
 ### Webpack - React - Alt
 
-`git clone -b webpack-react-alt https://github.com/bourrulebarbu/web-starter`
+`git clone -b webpack-react-alt https://github.com/Jeremboo/web-starter`
 
 ## Server
 
@@ -28,7 +28,7 @@ Multiple starters for many web utilities.
 
 ### Npm for node.js
 
-`git clone -b npm-server https://github.com/bourrulebarbu/web-starter`
+`git clone -b npm-server https://github.com/Jeremboo/web-starter`
 
 ## App
 
