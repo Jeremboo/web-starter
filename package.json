@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "npm run css:dev & npm run js:dev",
-    "js:dev": "budo app/main.js --live --dir ./public --open -- -t [babelify --presets [ es2015 ] ]",
+    "js:dev": "budo app/main.js --live --dir ./public --open -- -t babelify --presets es2015",
     "css:dev": "stylus -w app/main.styl -u autoprefixer-stylus -o public/style.css",
     "build": "npm run css:build & npm run js:build",
     "js:build": "browserify -t [babelify --presets [ es2015 ] ] app/main.js -o public/main.js && uglifyjs public/main.js -c -o public/main.js",
