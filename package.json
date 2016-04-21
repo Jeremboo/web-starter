@@ -35,6 +35,7 @@
     "eslint": "^2.5.3",
     "eslint-config-airbnb": "^6.2.0",
     "poststylus": "^0.2.3",
-    "stylus": "^0.54.2"
+    "stylus": "^0.54.2",
+    "uglifyjs": "^2.4.10"
   }
 }
