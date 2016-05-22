@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var node_modules_dir = path.resolve(__dirname, '../node_modules');
+var node_modules = path.resolve(__dirname, '../node_modules');
 var poststylus = require('poststylus');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      exclude: /(node_modules)/,
+      exclude: node_modules,
       loader: 'babel-loader',
       query: {
         presets: ['react', 'es2015']

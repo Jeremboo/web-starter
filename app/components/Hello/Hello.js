@@ -1,7 +1,8 @@
-import './Hello.styl';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Hello extends React.Component {
+import './Hello.styl';
+
+export default class Home extends Component {
   render() {
     return <h1>Hello world</h1>;
   }

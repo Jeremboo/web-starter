@@ -8,8 +8,8 @@
     "url": "https://github.com/Jeremboo/web-starter/tree/webpack-react"
   },
   "scripts": {
-    "start": "webpack-dev-server --progress --hot --config config/webpack.config.js --content-base public && open http://localhost:8080/webpack-dev-server/",
-    "build": "npm run clean && NODE_ENV=production webpack -p --config config/webpack.production.config.js",
+    "start": "webpack-dev-server --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback",
+    "build": "npm run clean && webpack -p --progress --config config/webpack.production.config.js",
     "clean": "rm -rf ./public/"
   },
   "keywords": [
@@ -47,6 +47,6 @@
     "stylus": "^0.54.2",
     "stylus-loader": "^1.6.0",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
   }
 }

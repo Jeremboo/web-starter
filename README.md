@@ -39,5 +39,3 @@ Eslint. You can also follow her
 - **Enzyme :** React testing library.
 
 - ** Webpack Extract text plugging**
-
-- **Alt Data manager**

@@ -13,7 +13,7 @@ var deps = [
 var config = {
     entry: [
       'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://localhost:8080',
+      'webpack-dev-server/client?http://localhost:3333',
       path.resolve(__dirname, '../app/main.js')
     ],
     resolve: {
@@ -30,7 +30,7 @@ var config = {
       loaders: [
         {
           test: /\.jsx?$/,
-          exclude: /(node_modules)/,
+          exclude: node_modules,
           loader: 'babel-loader',
           query: {
             presets: ['react', 'es2015']
