@@ -1,8 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var node_modules = path.resolve(__dirname, '../node_modules');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var poststylus = require('poststylus');
+
+var node_modules = path.resolve(__dirname, '../node_modules');
 
 module.exports = {
   entry:{
@@ -11,7 +12,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../public'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     loaders: [{
@@ -34,6 +36,10 @@ module.exports = {
       test: /\.(png|jpe?g|gif|svg)$/,
       loader: 'file?name=imgs/[name].[ext]',
       include: path.resolve(__dirname, '../app/assets/imgs')
+    },
+    {
+      test: /\.json$/,
+      loader: 'file?name=data/[name].[ext]',
     },
     {
       test: /\.(eot|svg|ttf|woff)$/,
