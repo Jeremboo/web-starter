@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 
 import './Hello.styl';
 
-export default class Home extends Component {
+export default class Hello extends Component {
+
+  _sayHello() {
+    return 'Hello world';
+  }
   render() {
-    return <h1>Hello world</h1>;
+    return <h1>{this._sayHello}</h1>;
   }
 }
