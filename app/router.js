@@ -1,8 +1,8 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import Layout from './views/Layout';
-import Home from './views/Home';
+import Layout from 'views/Layout';
+import Home from 'views/Home';
 
 export default function Root() {
   return (

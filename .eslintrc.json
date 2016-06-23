@@ -5,5 +5,10 @@
     "app": true
   },
 
-  "rules": {}
+  "rules": {},
+  "settings": {
+    "import/resolver": {
+      "babel-module-alias": {}
+    }
+  }
 }
