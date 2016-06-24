@@ -68,3 +68,25 @@ mediaqueries(maxWidth) {
     {block}
   }
 }
+
+// FONT
+webfont(family, fileUrl, hack-chrome-windows = false, weight = 'normal') {
+    @font-face {
+        font-family: family;
+        src: url(fileUrl + '.eot');
+        src: url(fileUrl + '.eot?#iefix') format('embedded-opentype'),
+            url(fileUrl + '.woff') format('woff'),
+            url(fileUrl + '.ttf') format('truetype'),
+            url(fileUrl + '.svg#'+ family) format('svg')
+        font-weight: weight;
+        font-style: normal;
+    }
+    if (hack-chrome-windows) {
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            @font-face {
+                font-family family
+                src url(fileUrl + '.svg#'+ family) format('svg')
+            }
+        }
+    }
+}
