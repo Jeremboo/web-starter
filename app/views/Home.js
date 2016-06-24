@@ -1,6 +1,13 @@
-import React, { Component } from 'react';
-import Hello from 'components/Hello/Hello';
+/**
+*
+* app/views/Home.js
+* Home
+*
+**/
 
+import React, { Component } from 'react';
+
+import Hello from 'components/Hello/Hello';
 
 export default class Home extends Component {
 
@@ -10,7 +17,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <section className="Content">
+      <section className="_content">
         <Hello />
       </section>
     );

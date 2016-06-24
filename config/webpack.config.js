@@ -39,7 +39,6 @@ var config = {
                 { src: path.resolve(__dirname, '../app/assets'), expose: "assets"},
                 { src: path.resolve(__dirname, '../app/components'), expose: "components"},
                 { src: path.resolve(__dirname, '../app/core'), expose: "core"},
-                { src: path.resolve(__dirname, '../app/style'), expose: "style"},
                 { src: path.resolve(__dirname, '../app/views'), expose: "views"},
               ]]
             ]
