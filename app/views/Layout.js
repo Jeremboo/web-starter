@@ -1,3 +1,10 @@
+/**
+*
+* app/views/Layout.js
+* Layout
+*
+**/
+
 import React, { Component } from 'react';
 
 export default class Layout extends Component {
@@ -14,4 +21,7 @@ export default class Layout extends Component {
     );
   }
 }
-Layout.propTypes = { children: React.PropTypes.node };
+
+Layout.propTypes = {
+  children: React.PropTypes.any.isRequired
+};

@@ -5,13 +5,30 @@
 *
 **/
 
+@import './variables'
+@import './mixins'
 
-html, ul {
+// RESET
+html, body, ul, p, h1, h2, h3, button, input, a {
   margin: 0;
   padding: 0;
   color: fontColor;
+  font-family: fontFamily;
 }
 
-ul {
-  list-style-type: none;
+button, input {
+  background-color: transparent;
+  border: none;
+  font: inherit;
+  line-height: normal;
+  outline: none;
+}
+
+a { text-decoration: none }
+
+ul { list-style-type: none }
+
+// CSS MASTER
+._content {
+  container();
 }

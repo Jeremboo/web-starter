@@ -22,7 +22,7 @@ var config = {
     output: {
         path: path.resolve(__dirname, '../public'),
         filename: 'bundle.js',
-        publicPath: 'http://localhost:3333'
+        publicPath: 'http://localhost:3333/'
     },
     devtool: "inline-source-map",
     module: {
@@ -33,20 +33,25 @@ var config = {
           exclude: node_modules,
           loader: 'babel-loader',
           query: {
-            presets: ['react', 'es2015']
+            presets: ['react', 'es2015'],
+            plugins: [
+              [ "module-alias", [
+                { src: path.resolve(__dirname, '../app/assets'), expose: "assets"},
+                { src: path.resolve(__dirname, '../app/components'), expose: "components"},
+                { src: path.resolve(__dirname, '../app/core'), expose: "core"},
+                { src: path.resolve(__dirname, '../app/views'), expose: "views"},
+              ]]
+            ]
           },
         },
         {
-          test: /\.css$/,
-          loader: 'style!css'
-        },
-        {
-          test: /\.styl$/,
+          test: /\.(styl|css)$/,
           loader: 'style!css?sourceMap!stylus'
         },
         {
           test: /\.json$/,
-          loader: 'json'
+          loader: 'json',
+          include: path.resolve(__dirname, '../app/assets/')
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,
@@ -54,7 +59,7 @@ var config = {
           include: path.resolve(__dirname, '../app/assets/imgs')
         },
         {
-          test: /\.(eot|svg|ttf|woff)$/,
+          test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           loader: 'file?name=fonts/[hash].[ext]',
           include: path.resolve(__dirname, '../app/assets/fonts')
         }
