@@ -63,7 +63,7 @@ var config = {
           include: path.resolve(__dirname, '../app/assets/imgs')
         },
         {
-          test: /\.(eot|svg|ttf|woff)$/,
+          test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           loader: 'file?name=fonts/[hash].[ext]',
           include: path.resolve(__dirname, '../app/assets/fonts')
         }

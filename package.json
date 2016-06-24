@@ -8,9 +8,9 @@
     "url": "https://github.com/Jeremboo/web-starter/tree/webpack-react"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback",
-    "build": "npm run clean && webpack -p --progress --config config/webpack.production.config.js",
-    "clean": "rm -rf ./public/"
+    "start": "webpack-dev-server --progress --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback",
+    "build": "npm run clean && webpack --progress --config config/webpack.production.config.js",
+    "clean": "rm -rf ./public"
   },
   "keywords": [
     "starter",

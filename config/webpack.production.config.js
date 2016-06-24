@@ -50,7 +50,7 @@ module.exports = {
       include: path.resolve(__dirname, '../app/assets/')
     },
     {
-      test: /\.(eot|svg|ttf|woff)$/,
+      test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'file?name=fonts/[name].[ext]',
       include: path.resolve(__dirname, '../app/assets/fonts')
     }]
@@ -62,6 +62,15 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      comments: false,
+      sourceMap: false,
+      mangle: true,
+      minimize: true
+    }),
     new HtmlWebpackPlugin({
       template: './app/assets/index.html'
     })
