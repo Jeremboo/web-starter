@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var poststylus = require('poststylus');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
@@ -12,7 +13,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../public'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [{
@@ -32,12 +33,8 @@ module.exports = {
       },
     },
     {
-      test: /\.css$/,
-      loader: 'style!css'
-    },
-    {
-      test: /\.styl$/,
-      loader: 'style!css!stylus'
+      test: /\.(styl|css)$/,
+      loader: ExtractTextPlugin.extract('style','css!stylus')
     },
     {
       test: /\.(png|jpe?g|gif|svg)$/,
@@ -47,7 +44,7 @@ module.exports = {
     {
       test: /\.json$/,
       loader: 'json',
-      include: path.resolve(__dirname, '../app/assets/')
+      include: path.resolve(__dirname, '../app/assets')
     },
     {
       test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -71,6 +68,7 @@ module.exports = {
       mangle: true,
       minimize: true
     }),
+    new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
       template: './app/assets/index.html'
     })

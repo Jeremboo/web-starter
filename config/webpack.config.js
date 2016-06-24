@@ -45,11 +45,7 @@ var config = {
           },
         },
         {
-          test: /\.css$/,
-          loader: 'style!css'
-        },
-        {
-          test: /\.styl$/,
+          test: /\.(styl|css)$/,
           loader: 'style!css?sourceMap!stylus'
         },
         {
