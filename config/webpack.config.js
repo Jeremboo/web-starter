@@ -22,7 +22,7 @@ var config = {
     output: {
         path: path.resolve(__dirname, '../public'),
         filename: 'bundle.js',
-        publicPath: 'http://localhost:3333'
+        publicPath: 'http://localhost:3333/'
     },
     devtool: "inline-source-map",
     module: {
@@ -55,7 +55,8 @@ var config = {
         },
         {
           test: /\.json$/,
-          loader: 'json'
+          loader: 'json',
+          include: path.resolve(__dirname, '../app/assets/')
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,

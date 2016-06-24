@@ -12,8 +12,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../public'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    filename: 'bundle.js'
   },
   module: {
     loaders: [{
@@ -48,7 +47,8 @@ module.exports = {
     },
     {
       test: /\.json$/,
-      loader: 'file?name=data/[name].[ext]',
+      loader: 'json',
+      include: path.resolve(__dirname, '../app/assets/')
     },
     {
       test: /\.(eot|svg|ttf|woff)$/,
