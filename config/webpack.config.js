@@ -38,6 +38,7 @@ var config = {
               [ "module-alias", [
                 { src: path.resolve(__dirname, '../app/assets'), expose: "assets"},
                 { src: path.resolve(__dirname, '../app/components'), expose: "components"},
+                { src: path.resolve(__dirname, '../app/containers'), expose: "containers"},
                 { src: path.resolve(__dirname, '../app/core'), expose: "core"},
                 { src: path.resolve(__dirname, '../app/views'), expose: "views"},
               ]]

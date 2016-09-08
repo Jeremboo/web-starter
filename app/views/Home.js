@@ -5,23 +5,14 @@
 *
 **/
 
-import React, { Component } from 'react';
+import React from 'react';
 
-import Hello from 'components/Hello/Hello';
+import TitleContainer from 'containers/TitleContainer';
 
-export default class Home extends Component {
+const Home = () => (
+  <section className="_content">
+    <TitleContainer />
+  </section>
+);
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
-  render() {
-    return (
-      <section className="_content">
-        <Hello
-          message="Hello world"
-        />
-      </section>
-    );
-  }
-}
+export default Home;
