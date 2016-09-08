@@ -32,6 +32,8 @@ Eslint. You can also follow her
 
 ## TODO
 
+- **Babel preset airbnb :** [???](https://github.com/airbnb/babel-preset-airbnb)
+
 - **Mocha :** test runner
 
 - **Chai :** assertion
