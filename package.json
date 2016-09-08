@@ -23,6 +23,7 @@
   "author": "Jérémie Boulay <jeremi.boulay@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "history": "^2.1.2",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0"
@@ -43,7 +44,6 @@
     "eslint-plugin-react": "^6.2.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
-    "history": "^2.1.2",
     "html-webpack-plugin": "^2.7.2",
     "json-loader": "^0.5.4",
     "postcss-loader": "^0.8.0",

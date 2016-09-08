@@ -18,7 +18,9 @@ export default class Home extends Component {
   render() {
     return (
       <section className="_content">
-        <Hello />
+        <Hello
+          message="Hello world"
+        />
       </section>
     );
   }

@@ -5,16 +5,22 @@
 *
 **/
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Hello.styl';
+//
+const Hello = ({ message }) => {
+  const sayHello = msg => `Say : ${msg}`;
 
-export default class Hello extends Component {
+  return (
+    <h1>{sayHello(message)}</h1>
+  );
+};
+Hello.propTypes = {
+  message: React.PropTypes.string,
+};
+Hello.defaultProps = {
+  message: '...',
+};
 
-  _sayHello() {
-    return 'Hello world';
-  }
-  render() {
-    return <h1>{this._sayHello()}</h1>;
-  }
-}
+export default Hello;

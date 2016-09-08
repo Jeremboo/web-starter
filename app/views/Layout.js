@@ -5,23 +5,15 @@
 *
 **/
 
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Layout extends Component {
-
-  componentDidMount() {
-
-  }
-
-  render() {
-    return (
-      <div id="layout">
-        { this.props.children }
-      </div>
-    );
-  }
-}
-
+const Layout = ({ children }) => (
+  <div id="layout">
+    { children }
+  </div>
+);
 Layout.propTypes = {
-  children: React.PropTypes.any.isRequired
+  children: React.PropTypes.any.isRequired,
 };
+
+export default Layout;
