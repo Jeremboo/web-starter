@@ -15,11 +15,16 @@ module.exports = {
     path: path.resolve(__dirname, '../public'),
     filename: 'bundle.js',
   },
+  externals: {
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  },
   module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: node_modules,
-      loader: 'babel-loader',
+      loader: 'babel',
       query: {
         plugins: [
           [ "module-alias", [

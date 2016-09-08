@@ -3,6 +3,7 @@
 
 # NPM packages folder.
 node_modules/
+npm-debug.log
 
 # Webpack
 public/

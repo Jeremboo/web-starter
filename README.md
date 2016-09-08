@@ -34,10 +34,6 @@ Eslint. You can also follow her
 
 - **Babel preset airbnb :** [???](https://github.com/airbnb/babel-preset-airbnb)
 
-- **Mocha :** test runner
+- **Karma :** remplace Mocha by Karma ?
 
-- **Chai :** assertion
-
-- **Enzyme :** React testing library.
-
-- ** Webpack Extract text plugging**
+- **Webpack Extract text plugging**

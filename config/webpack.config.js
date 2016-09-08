@@ -24,6 +24,11 @@ var config = {
         filename: 'bundle.js',
         publicPath: 'http://localhost:3333/'
     },
+    externals: {
+      'react/addons': true,
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': true
+    },
     devtool: "inline-source-map",
     module: {
       noParse: [],
@@ -31,7 +36,7 @@ var config = {
         {
           test: /\.jsx?$/,
           exclude: node_modules,
-          loader: 'babel-loader',
+          loader: 'babel',
           query: {
             plugins: [
               [ "module-alias", [
