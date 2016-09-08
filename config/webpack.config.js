@@ -6,8 +6,8 @@ var poststylus = require('poststylus');
 var node_modules = path.resolve(__dirname, '../node_modules');
 
 var deps = [
-  'react/dist/react-with-addons.min.js',
-  'react-dom/dist/react-dom.min.js'
+  'react/dist/react-with-addons.js',
+  'react-dom/dist/react-dom.js'
 ];
 
 var config = {
