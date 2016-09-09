@@ -11,7 +11,7 @@
     "start": "webpack-dev-server --progress --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback",
     "build": "npm run clean && webpack --progress --config config/webpack.production.config.js",
     "clean": "rm -rf public",
-    "test": "NODE_PATH=app mocha config/mocha.config.js app/**/*.spec.js",
+    "test": "NODE_PATH=app mocha config/mocha.config.js ./**/*.spec.js --recursive",
     "test:watch": "npm test -- --watch"
   },
   "keywords": [
