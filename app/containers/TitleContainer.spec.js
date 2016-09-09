@@ -1,12 +1,15 @@
 import { expect } from 'chai';
-import React from 'react';
-import { shallow } from 'enzyme';
+import testSetupProvider from 'core/testSetup';
 
 import TitleContainer from './TitleContainer';
 
-describe('<TitleContainer />', function() {
+const setup = testSetupProvider();
+
+describe('TitleContainer', function() {
+  const titleContainerShallow = setup(TitleContainer);
+
   it('Should have one <Title /> component', function() {
-    expect(shallow(<TitleContainer />).find('<Title />'));
+    expect(titleContainerShallow.find('<Title />'));
   });
 
   // TODO add another tests
