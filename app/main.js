@@ -7,12 +7,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import reducers from 'core/reducersIndex'; // TODO to review
+import reducers from 'core/reducers/index.js';
 
 import './style/base.styl';
 import './style/fonts.styl';
@@ -24,14 +24,7 @@ import TodoAppView from 'views/TodoAppView';
 // Enable react dev-tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 window.React = React;
 
-const store = createStore(
-  combineReducers(
-    Object.assign(
-      reducers,
-      { routing: routerReducer }
-    )
-  )
-);
+const store = createStore(reducers);
 
 const history = syncHistoryWithStore(
   browserHistory,
