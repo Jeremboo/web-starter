@@ -43,7 +43,7 @@ ReactDOM.render(
   <Provider store={store} >
     <Router history={history}>
       <Route path="/" component={Layout} >
-        <IndexRoute component={Home} />
+        <IndexRoute component={HomeView} />
         <Route path="/home" component={HomeView} />
         <Route path="/todo" component={TodoAppView} />
       </Route>
