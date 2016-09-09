@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 
+import './Todo.styl';
+
 const Todo = ({ todo, onTodoClick }) => (
   <li
-    style={{
-      textDecoration: todo.completed ?
-      'line-through' :
-      'none',
-    }}
+    className={`Todo ${todo.completed ? 'Todo_completed' : ''}`}
+    data-text={todo.text}
     onClick={() => onTodoClick(todo.id)}
   >
     {todo.text}
