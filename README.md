@@ -37,3 +37,5 @@ Eslint. You can also follow her
 - **Karma :** remplace Mocha by Karma ?
 
 - **Webpack Extract text plugging**
+
+- **redux-actions**
