@@ -11,26 +11,9 @@ function makeActionCreator(type, ...argNames) {
 }
 
 // ACTIONS NAME
-export const TODO = {
-  ADD_TODO: 'ADD_TODO',
-  TOGGLE_TODO: 'TOGGLE_TODO',
-};
-export const VISIBILITY_FILTER = {
-  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
-  SWITCH_VISIBILITY_FILTER: 'SWITCH_VISIBILITY_FILTER',
-};
-
 export const TEXT = {
   SET_TEXT: 'SET_TEXT',
 };
 
 // ACTIONS
-export const addTodo = makeActionCreator(TODO.ADD_TODO, 'id', 'text');
-export const toggleTodo = makeActionCreator(TODO.TOGGLE_TODO, 'id');
-
-export const switchVisibilityFilter = makeActionCreator(
-  VISIBILITY_FILTER.SWITCH_VISIBILITY_FILTER,
-  'filter'
-);
-
 export const setText = makeActionCreator(TEXT.SET_TEXT, 'text');

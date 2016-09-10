@@ -19,7 +19,6 @@ import './style/fonts.styl';
 
 import Layout from 'views/Layout';
 import HomeView from 'views/HomeView';
-import TodoAppView from 'views/TodoAppView';
 
 // Enable react dev-tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 window.React = React;
@@ -37,7 +36,6 @@ ReactDOM.render(
       <Route path="/" component={Layout} >
         <IndexRoute component={HomeView} />
         <Route path="/home" component={HomeView} />
-        <Route path="/todo" component={TodoAppView} />
       </Route>
     </Router>
   </Provider>,
