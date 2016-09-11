@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import text from './text';
+import title from './title';
 
 export default combineReducers({
-  text,
+  title,
   routing: routerReducer,
 });

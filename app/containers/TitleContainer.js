@@ -7,40 +7,35 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { setText } from 'core/actionCreator';
+import { getTitle } from 'core/actions/title';
 
 import Title from 'components/Title/Title';
 
 export class TitleContainer extends Component {
 
   componentDidMount() {
-    // simulate ajax request
-    setTimeout(() => this.props.onTextReceived('Hello World'), 500);
+    const { dispatch } = this.props;
+    dispatch(getTitle());
   }
 
   render() {
     return (
       <Title
-        text={this.props.text}
+        text={this.props.title}
       />
     );
   }
 }
 TitleContainer.propTypes = {
-  text: PropTypes.string.isRequired,
-  onTextReceived: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 
 const mapStateToTitleContainerProps = state => ({
-  text: state.text,
-});
-
-const mapDispatchToTitleContainerProps = dispatch => ({
-  onTextReceived: text => dispatch(setText(text)),
+  title: state.title,
 });
 
 export default connect(
-  mapStateToTitleContainerProps,
-  mapDispatchToTitleContainerProps
+  mapStateToTitleContainerProps
 )(TitleContainer);

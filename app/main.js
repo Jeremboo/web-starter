@@ -7,8 +7,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
@@ -23,7 +24,10 @@ import HomeView from 'views/HomeView';
 // Enable react dev-tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 window.React = React;
 
-const store = createStore(reducers);
+const store = createStore(
+  reducers,
+  applyMiddleware(thunk)
+);
 
 const history = syncHistoryWithStore(
   browserHistory,

@@ -5,14 +5,18 @@
 *
 **/
 
-export function createReducer(initialState, reducerMap) {
-  return (state = initialState, action) => {
-    const reducer = reducerMap[action.type];
+export const createReducer = (initialState, handlers) => (state = initialState, action) => {
+  if ({}.hasOwnProperty.call(handlers, action.type)) {
+    return handlers[action.type](state, action);
+  }
+  return state;
+};
 
-    return (
-      reducer
-      ? reducer(state, action.payload)
-      : state
-    );
-  };
-}
+
+export const makeActionCreator = (type, ...argNames) => (...args) => {
+  const action = { type };
+  argNames.forEach((arg, index) => {
+    action[argNames[index]] = args[index];
+  });
+  return action;
+};

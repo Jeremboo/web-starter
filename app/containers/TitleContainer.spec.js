@@ -18,7 +18,7 @@ describe('TitleContainer', function() {
   });
 
   it('Should have a string text props', function() {
-    expect(titleContainerShallow.props().text).to.equal('..');
+    expect(titleContainerShallow.props().text).to.equal('...');
   });
 
   // TODO add another tests

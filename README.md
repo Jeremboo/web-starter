@@ -34,8 +34,8 @@ Eslint. You can also follow her
 
 - **Babel preset airbnb :** [???](https://github.com/airbnb/babel-preset-airbnb)
 
-- **Karma :** remplace Mocha by Karma ?
-
 - **Webpack Extract text plugging**
 
-- **redux-actions**
+- **redux-actions ??**
+
+- **[redux-logger](https://github.com/evgenyrodionov/redux-logger)**
