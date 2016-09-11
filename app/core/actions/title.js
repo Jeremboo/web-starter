@@ -15,7 +15,10 @@ const failureTitle = makeActionCreator(FAILURE_TITLE, 'error');
 
 const fetchTitle = () => dispatch => {
   dispatch(requestTitle());
-  setTimeout(() => Promise.resolve(dispatch(successTitle('Hello World')), 500));
+  setTimeout(
+     () => {
+       Promise.resolve(dispatch(successTitle('Hello World')));
+     }, 1000);
 };
 
 export const getTitle = () => (dispatch, getState) => {
