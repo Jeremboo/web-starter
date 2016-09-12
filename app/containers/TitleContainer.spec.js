@@ -1,5 +1,5 @@
 import React from 'react';
-import { expect } from 'chai';
+import expect from 'expect';
 import testSetupProvider from 'core/testSetup';
 
 import { TitleContainer } from './TitleContainer';
