@@ -17,14 +17,14 @@ const fetchTitle = () => dispatch => {
   dispatch(requestTitle());
   setTimeout(
      () => {
-       Promise.resolve(dispatch(successTitle('Hello World')));
+       dispatch(successTitle('Hello World'));
      }, 1000);
 };
 
 export const getTitle = () => (dispatch, getState) => {
   const { title } = getState();
   if (title !== '' && title !== '....') {
-    return Promise.resolve(title);
+    return title;
   }
   return dispatch(fetchTitle());
 };

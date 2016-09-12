@@ -21,7 +21,7 @@ export class TitleContainer extends Component {
   render() {
     return (
       <Title
-        text={this.props.title}
+        title={this.props.title}
       />
     );
   }
