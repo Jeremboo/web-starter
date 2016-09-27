@@ -7,7 +7,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getTitle } from 'core/middleware/title';
+import { getTitle } from 'core/middlewares/title';
 
 import Title from 'components/Title/Title';
 
