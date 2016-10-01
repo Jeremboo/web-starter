@@ -1,36 +1,21 @@
-/**
-*
-* app/main.js
-* Main
-*
-**/
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import reducers from 'core/reducers/index.js';
+import createStore from 'core/createStore';
+import Layout from 'views/Layout';
+import HomeView from 'views/HomeView';
 
 import './style/base.styl';
 import './style/fonts.styl';
 
-import Layout from 'views/Layout';
-import HomeView from 'views/HomeView';
-
 // Enable react dev-tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 window.React = React;
 
-const store = createStore(
-  reducers,
-  compose(
-    applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
-);
+const initialState = {};
+const store = createStore(initialState);
 
 const history = syncHistoryWithStore(
   browserHistory,
