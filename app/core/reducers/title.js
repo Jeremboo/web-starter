@@ -1,16 +1,11 @@
 import { REQUEST_TITLE, SUCCESS_TITLE, FAILURE_TITLE } from 'core/actions/title';
-import { createReducer } from 'core/utils';
 
-const title = createReducer('', {
-  [REQUEST_TITLE]() {
-    return '...';
-  },
-  [SUCCESS_TITLE](state, action) {
-    return action.title;
-  },
-  [FAILURE_TITLE]() {
-    return 'error';
-  },
-});
+import { handleActions } from 'redux-actions';
+
+const title = handleActions({
+  REQUEST_TITLE: () => '...',
+  SUCCESS_TITLE: (state, action) => action.title,
+  FAILURE_TITLE: () => 'error',
+}, '');
 
 export default title;

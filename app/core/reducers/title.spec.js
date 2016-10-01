@@ -5,7 +5,7 @@ import title from './title';
 describe('Reducer title', function() {
 
   it('should return empty sting', function() {
-    expect(title(undefined, {})).toEqual('');
+    expect(title(undefined, { type: '' })).toEqual('');
   });
 
   const action = {
