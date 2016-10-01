@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { REQUEST_TITLE, SUCCESS_TITLE, FAILURE_TITLE } from 'core/actions/title';
+import { successTitle } from 'core/actions/title';
 import title from './title';
 
 describe('Reducer title', function() {
@@ -8,11 +8,8 @@ describe('Reducer title', function() {
     expect(title(undefined, { type: '' })).toEqual('');
   });
 
-  const action = {
-    type: SUCCESS_TITLE,
-    title: 'salut',
-  };
-  it(`should return ${action.title} string`, function() {
-    expect(title('', action));
+  const testTitle = 'test';
+  it(`should return ${testTitle} string`, function() {
+    expect(title('', successTitle(testTitle)));
   });
 });

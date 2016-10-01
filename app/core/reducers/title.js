@@ -4,7 +4,7 @@ import { handleActions } from 'redux-actions';
 
 const title = handleActions({
   REQUEST_TITLE: () => '...',
-  SUCCESS_TITLE: (state, action) => action.title,
+  SUCCESS_TITLE: (state, action) => action.payload.title,
   FAILURE_TITLE: () => 'error',
 }, '');
 
