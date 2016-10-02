@@ -6,7 +6,7 @@
 **/
 
 import React, { PropTypes } from 'react';
-import './index.styl';
+import './Title.styl';
 
 const Title = ({ title }) => <h1>{title}</h1>;
 Title.propTypes = {
