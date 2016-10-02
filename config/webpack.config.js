@@ -54,7 +54,7 @@ var config = {
         },
         {
           test: /\.(styl|css)$/,
-          loader: 'style!css?sourceMap!stylus'
+          loader: 'style!css?sourceMap!stylus?import=' + path.resolve(__dirname, '../app/style/base.styl')
         },
         {
           test: /\.json$/,
