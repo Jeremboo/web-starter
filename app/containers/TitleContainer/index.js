@@ -1,13 +1,13 @@
 /**
 *
-* app/containers/TitileContainer.js
-* COntainer to manage the data flow
+* app/containers/TitileContainer/index.js
+* Container to manage the data flow
 *
 **/
 
 import React, { Component } from 'react';
 
-import Title from 'components/Title/Title';
+import Title from './components/Title';
 
 export default class TitleContainer extends Component {
   constructor(props) {

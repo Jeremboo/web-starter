@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import testSetupProvider from 'core/testSetup';
 
-import TitleContainer from './TitleContainer';
+import TitleContainer from './index';
 
 const setup = testSetupProvider();
 

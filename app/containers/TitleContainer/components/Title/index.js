@@ -1,6 +1,6 @@
 /**
 *
-* app/components/Title/Title.js
+* app/containers/TitleContainer/components/Title/index.js
 * Title
 *
 **/

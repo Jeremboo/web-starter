@@ -9,20 +9,27 @@ Just a architecture to manage a web project with :
 
 - [React]()
 
+- [Mocha]()
+- [Enzyme]()
+
 ## Commands :
 
-- `npm start` for starting the development with auto reloading.
+## Commands :
 
-- `npm run build` for having a `public/`` production directory.
+- `npm start` to starting the development with auto reloading.
+
+- `npm run build` to having a `public/` production directory.
+
+- `npm run test:watch` to start your unit tests.
 
 ## Details :
 
 - **Webpack with :**
-  - `dev`and `prod` environment
+  - `dev` and `prod` environment
   - Auto reloading
   - ...
 
-- **Babel for using ES6.**
+- **Babel to using ES6.**
 
 - **Style Guide :**
 
@@ -31,9 +38,5 @@ Eslint. You can also follow her
 [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
 
 ## TODO
-
-- **Babel preset airbnb :** [???](https://github.com/airbnb/babel-preset-airbnb)
-
-- **Karma :** remplace Mocha by Karma ?
 
 - **Webpack Extract text plugging**
