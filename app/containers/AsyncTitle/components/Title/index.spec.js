@@ -2,7 +2,7 @@ import React from 'react';
 import expect from 'expect';
 import { testSetupProvider } from 'core/testSetup';
 
-import Title from './Title';
+import Title from './index';
 
 const setup = testSetupProvider();
 

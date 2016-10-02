@@ -1,6 +1,7 @@
 import expect from 'expect';
-import { successTitle } from 'core/actions/title';
-import title from './title';
+
+import { successTitle } from './actions';
+import title from './reducers';
 
 describe('Reducer title', function() {
 

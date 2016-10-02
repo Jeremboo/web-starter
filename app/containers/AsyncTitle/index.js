@@ -1,17 +1,17 @@
 /**
 *
-* app/containers/TitileContainer.js
-* COntainer to manage the data flow
+* app/containers/Title/index.js
+* Container to manage the data flow
 *
 **/
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getTitle } from 'core/middlewares/title';
 
-import Title from 'components/Title/Title';
+import { getTitle } from './modules/middlewares';
+import Title from './components/Title';
 
-export class TitleContainer extends Component {
+export class AsyncTitle extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -26,16 +26,16 @@ export class TitleContainer extends Component {
     );
   }
 }
-TitleContainer.propTypes = {
+AsyncTitle.propTypes = {
   title: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
 
-const mapStateToTitleContainerProps = state => ({
+const mapStateToAsyncTitleProps = state => ({
   title: state.title,
 });
 
 export default connect(
-  mapStateToTitleContainerProps
-)(TitleContainer);
+  mapStateToAsyncTitleProps
+)(AsyncTitle);

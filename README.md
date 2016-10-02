@@ -8,21 +8,27 @@ Just a architecture to manage a web project with :
 - [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 
 - [React]()
+- [Redux]()
+
+- [Mocha]()
+- [Enzyme]()
 
 ## Commands :
 
-- `npm start` for starting the development with auto reloading.
+- `npm start` to starting the development with auto reloading.
 
-- `npm run build` for having a `public/`` production directory.
+- `npm run build` to having a `public/` production directory.
+
+- `npm run test:watch` to start your unit tests.
 
 ## Details :
 
 - **Webpack with :**
-  - `dev`and `prod` environment
+  - `dev` and `prod` environment
   - Auto reloading
   - ...
 
-- **Babel for using ES6.**
+- **Babel to using ES6.**
 
 - **Style Guide :**
 
@@ -32,10 +38,4 @@ Eslint. You can also follow her
 
 ## TODO
 
-- **Babel preset airbnb :** [???](https://github.com/airbnb/babel-preset-airbnb)
-
 - **Webpack Extract text plugging**
-
-- **redux-actions ??**
-
-- **[redux-logger](https://github.com/evgenyrodionov/redux-logger)**

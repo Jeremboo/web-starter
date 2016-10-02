@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { mockStore } from 'core/testSetup';
 
-import { getTitle, fetchTitle } from './title.js';
+import { getTitle, fetchTitle } from './middlewares.js';
 
 // TODO update tests, see :
 // http://redux.js.org/docs/recipes/WritingTests.html

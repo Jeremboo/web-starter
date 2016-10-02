@@ -5,12 +5,12 @@
 *
 **/
 
-import React from 'react';
-import './Title.styl';
+import React, { PropTypes } from 'react';
+import './index.styl';
 
 const Title = ({ title }) => <h1>{title}</h1>;
 Title.propTypes = {
-  title: React.PropTypes.string,
+  title: PropTypes.string,
 };
 Title.defaultProps = {
   title: '...',

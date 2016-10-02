@@ -1,8 +1,9 @@
 import React from 'react';
 import expect from 'expect';
+
 import { testSetupProvider } from 'core/testSetup';
 
-import { TitleContainer } from './TitleContainer';
+import { AsyncTitle } from './index';
 
 const initialProps = {
   title: '...',
@@ -10,8 +11,8 @@ const initialProps = {
 };
 const setup = testSetupProvider(initialProps);
 
-describe('Container TitleContainer', function() {
-  const titleContainerShallow = setup(TitleContainer);
+describe('Container AsyncTitle', function() {
+  const titleContainerShallow = setup(AsyncTitle);
 
   it('should have a <Title /> component', function() {
     expect(titleContainerShallow.find('<Title />'));

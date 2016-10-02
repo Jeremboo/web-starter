@@ -7,11 +7,12 @@
 
 import React from 'react';
 
-import TitleContainer from 'containers/TitleContainer';
+// import TitleContainer from 'containers/TitleContainer';
+import AsyncTitle from 'containers/AsyncTitle';
 
 const Home = () => (
   <section className="_content">
-    <TitleContainer />
+    <AsyncTitle />
   </section>
 );
 

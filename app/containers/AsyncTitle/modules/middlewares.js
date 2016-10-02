@@ -1,7 +1,7 @@
 import {
   requestTitle,
   successTitle,
-} from 'core/actions/title';
+} from './actions';
 
 const fetchTitle = () => dispatch => {
   dispatch(requestTitle());
