@@ -39,7 +39,7 @@ module.exports = {
     },
     {
       test: /\.(styl|css)$/,
-      loader: ExtractTextPlugin.extract('style','css!stylus')
+      loader: ExtractTextPlugin.extract('style','css!stylus?import=' + path.resolve(__dirname, '../app/style/base.styl'))
     },
     {
       test: /\.(png|jpe?g|gif|svg)$/,
