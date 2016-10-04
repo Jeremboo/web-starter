@@ -1,4 +1,4 @@
-import { createAction, createActions } from 'redux-actions';
+import { createActions } from 'redux-actions';
 
 // ACTIONS NAME
 export const REQUEST_TITLE = 'REQUEST_TITLE';
