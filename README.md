@@ -21,6 +21,10 @@ Just a architecture to manage a web project with :
 
 - `npm run test:watch` to start your unit tests.
 
+## Configs :
+
+  Update the `basename` variable into the `config/webpack.production.config.js`.
+
 ## Details :
 
 - **Webpack with :**

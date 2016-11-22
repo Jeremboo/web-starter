@@ -6,6 +6,8 @@ var poststylus = require('poststylus');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
+var basename = '';
+
 module.exports = {
   entry:{
     app: path.resolve(__dirname, '../app/main.js'),
@@ -20,6 +22,7 @@ module.exports = {
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true
   },
+  devtool: 'cheap-module-source-map',
   module: {
     loaders: [{
       test: /\.jsx?$/,
@@ -66,14 +69,23 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production'),
+        'BASENAME': JSON.stringify(basename)
+      },
+    }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
+      compress: { warnings: true },
       comments: false,
       sourceMap: false,
       mangle: true,
-      minimize: true
+      minimize: true,
     }),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('styles.css', {
+      disable: false,
+      allChunks: true,
+    }),
     new HtmlWebpackPlugin({
       template: './app/assets/index.html'
     })

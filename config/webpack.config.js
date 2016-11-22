@@ -10,6 +10,8 @@ var deps = [
   'react-dom/dist/react-dom.js'
 ];
 
+var basename = '';
+
 var config = {
     entry: [
       'webpack/hot/dev-server',
@@ -77,6 +79,12 @@ var config = {
     },
     plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.DefinePlugin({
+        'process.env':{
+          'NODE_ENV': JSON.stringify('development'),
+          'BASENAME': JSON.stringify(basename),
+        },
+      }),
       new HtmlWebpackPlugin({
         template: './app/assets/index.html'
       })
