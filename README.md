@@ -6,7 +6,7 @@ Just a architecture to manage a web project in React
 
 - `npm start` for starting the development with auto reloading.
 
-- `npm run build` for having a `public/` production directory.
+- `npm run build` to have a `public/` production directory.
 
 ## Configs :
 
