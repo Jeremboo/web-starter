@@ -6,6 +6,8 @@ var poststylus = require('poststylus');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
+var basename = '';
+
 module.exports = {
   entry:{
     app: path.resolve(__dirname, '../app/main.js'),
@@ -67,13 +69,22 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
+      compress: { warnings: true },
       comments: false,
       sourceMap: false,
       mangle: true,
-      minimize: true
+      minimize: true,
     }),
-    new ExtractTextPlugin('styles.css'),
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production'),
+        'BASENAME': JSON.stringify(basename)
+      },
+    }),
+    new ExtractTextPlugin('styles.css', {
+      disable: false,
+      allChunks: true,
+    }),
     new HtmlWebpackPlugin({
       template: './app/assets/index.html'
     })

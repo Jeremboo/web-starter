@@ -7,6 +7,7 @@ import Home from 'views/Home';
 
 const history = useRouterHistory(createHistory)({
   basename: window.location.pathname,
+  // basename: process.env.BASENAME,
 });
 
 export default function Root() {

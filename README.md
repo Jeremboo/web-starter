@@ -13,7 +13,11 @@ Just a architecture to manage a web project with :
 
 - `npm start` for starting the development with auto reloading.
 
-- `npm run build` for having a `public/`` production directory.
+- `npm run build` for having a `public/` production directory.
+
+## Configs :
+
+  Update the `basename` variable into the `config/webpack.production.config.js`.
 
 ## Details :
 
