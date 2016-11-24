@@ -14,8 +14,8 @@ import Title from './components/Title';
 export class AsyncTitle extends Component {
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getTitle());
+    const { getTitle } = this.props;
+    getTitle();
   }
 
   render() {
@@ -28,14 +28,14 @@ export class AsyncTitle extends Component {
 }
 AsyncTitle.propTypes = {
   title: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  getTitle: PropTypes.func.isRequired,
 };
 
-
-const mapStateToAsyncTitleProps = state => ({
-  title: state.title,
-});
-
 export default connect(
-  mapStateToAsyncTitleProps
+  state => ({
+    title: state.title,
+  }),
+  dispatch => ({
+    getTitle: () => { dispatch(getTitle()); },
+  })
 )(AsyncTitle);
