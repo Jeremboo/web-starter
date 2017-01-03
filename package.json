@@ -8,7 +8,7 @@
     "url": "https://github.com/Jeremboo/web-starter/tree/webpack-react"
   },
   "scripts": {
-    "start": "webpack-dev-server --progress --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback",
+    "start": "webpack-dev-server --progress --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback --host 0.0.0.0",
     "build": "npm run clean && webpack --progress --config config/webpack.production.config.js",
     "clean": "rm -rf public",
     "test": "NODE_PATH=app mocha config/mocha.config.js ./**/*.spec.js --recursive",
@@ -37,6 +37,7 @@
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
     "babel-plugin-module-alias": "^1.6.0",
+    "babel-polyfill": "^6.20.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.14.0",
@@ -52,6 +53,7 @@
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.7.2",
     "ignore-styles": "^5.0.1",
+    "ip": "^1.1.4",
     "jsdom": "^9.5.0",
     "json-loader": "^0.5.4",
     "mocha": "^3.0.2",
