@@ -8,7 +8,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getTitle } from './modules/middlewares';
+import { getTitle } from 'core/middlewares/asyncTitle';
 import Title from './components/Title';
 
 export class AsyncTitle extends Component {

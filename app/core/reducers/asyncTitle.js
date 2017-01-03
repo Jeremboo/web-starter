@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { REQUEST_TITLE, SUCCESS_TITLE, FAILURE_TITLE } from './actions';
+import { REQUEST_TITLE, SUCCESS_TITLE, FAILURE_TITLE } from 'core/actions/asyncTitle';
 
 const title = handleActions({
   REQUEST_TITLE: () => '...',

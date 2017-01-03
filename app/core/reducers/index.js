@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import title from 'containers/AsyncTitle/modules/reducers';
+import title from './asyncTitle';
 
 export default combineReducers({
   title,

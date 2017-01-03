@@ -3,7 +3,7 @@ import expect from 'expect';
 import {
   SUCCESS_TITLE,
   successTitle,
-} from './actions.js';
+} from './asyncTitle.js';
 
 describe('Actions title', function() {
   it('successTitle() should return the title', function() {

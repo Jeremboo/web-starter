@@ -9,8 +9,8 @@ import HomeView from './HomeView';
 
 const Root = ({ store }) => {
   const browserHistory = useRouterHistory(createHistory)({
-    basename: process.env.BASENAME,
-     // basename: window.location.pathname,
+    // basename: process.env.BASENAME,
+    basename: window.location.pathname,
   });
 
   const history = syncHistoryWithStore(
