@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var poststylus = require('poststylus');
+var ip = require('ip');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
@@ -10,12 +11,14 @@ var deps = [
   'react-dom/dist/react-dom.js'
 ];
 
+var myLocalIp = 'http://' + ip.address() + ':3333/';
 var basename = '';
 
 var config = {
     entry: [
+      'babel-polyfill',
       'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://localhost:3333',
+      'webpack-dev-server/client?' + myLocalIp,
       path.resolve(__dirname, '../app/main.js')
     ],
     resolve: {
@@ -24,14 +27,16 @@ var config = {
     output: {
         path: path.resolve(__dirname, '../public'),
         filename: 'bundle.js',
-        publicPath: 'http://localhost:3333/'
+        publicPath: myLocalIp,
+        devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
     externals: {
       'react/addons': true,
       'react/lib/ExecutionEnvironment': true,
       'react/lib/ReactContext': true
     },
-    devtool: "inline-source-map",
+    debug: true,
+    devtool: "eval-source-map",
     module: {
       noParse: [],
       loaders: [
@@ -86,7 +91,8 @@ var config = {
         },
       }),
       new HtmlWebpackPlugin({
-        template: './app/assets/index.html'
+        template: './app/assets/index.html',
+        // favicon: './app/assets/imgs/favicon.png',
       })
     ]
 };

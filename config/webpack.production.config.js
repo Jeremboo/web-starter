@@ -10,8 +10,12 @@ var basename = '';
 
 module.exports = {
   entry:{
-    app: path.resolve(__dirname, '../app/main.js'),
-    vendors: ['react', 'react-dom']
+
+    app: [
+      'babel-polyfill',
+      path.resolve(__dirname, '../app/main.js'),
+    ],
+    vendors: ['react', 'react-dom', 'react-router', 'history'],
   },
   output: {
     path: path.resolve(__dirname, '../public'),
@@ -76,7 +80,7 @@ module.exports = {
       },
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: true },
+      compress: { warnings: true, drop_console: true, },
       comments: false,
       sourceMap: false,
       mangle: true,
@@ -87,7 +91,8 @@ module.exports = {
       allChunks: true,
     }),
     new HtmlWebpackPlugin({
-      template: './app/assets/index.html'
+      template: './app/assets/index.html',
+      // favicon: './app/assets/imgs/favicon.png',
     })
   ]
 };
