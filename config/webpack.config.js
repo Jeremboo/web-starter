@@ -11,8 +11,6 @@ var ipAdress = ip.address() + ':' + port;
 var myLocalIp = 'http://' + ipAdress + '/';
 var basename = '';
 
-var basename = '';
-
 var config = {
     entry: [
       'babel-polyfill',
