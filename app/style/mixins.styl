@@ -54,12 +54,17 @@ circle(d) {
 
 // MEDIA QUERIES
 mobile() {
-  @media screen and (max-device-width: 480px) {
+  @media screen and (max-width: 480px) {
     {block}
   }
 }
-desktop() {
+tablet() {
   @media screen and (min-width: 1024px){
+    {block}
+  }
+}
+largeScreen() {
+  @media screen and (min-width: 1600px){
     {block}
   }
 }
@@ -70,23 +75,24 @@ mediaqueries(maxWidth) {
 }
 
 // FONT
-webfont(family, fileUrl, hack-chrome-windows = false, weight = 'normal') {
-    @font-face {
-        font-family: family;
-        src: url(fileUrl + '.eot');
-        src: url(fileUrl + '.eot?#iefix') format('embedded-opentype'),
-            url(fileUrl + '.woff') format('woff'),
-            url(fileUrl + '.ttf') format('truetype'),
-            url(fileUrl + '.svg#'+ family) format('svg')
-        font-weight: weight;
-        font-style: normal;
-    }
-    if (hack-chrome-windows) {
-        @media screen and (-webkit-min-device-pixel-ratio:0) {
-            @font-face {
-                font-family family
-                src url(fileUrl + '.svg#'+ family) format('svg')
-            }
-        }
-    }
-}
+webfont(family, fileUrl, font-weight = false, font-style = false, formats = eot woff2 woff truetype svg)
+	@font-face
+		fonts = ()
+		font-family family
+		if eot in formats
+			push(fonts, 'url("' + fileUrl + '.eot")  format("embedded-opentype")')
+		if woff2 in formats
+			push(fonts, 'url("' + fileUrl + '.woff2") format("woff2")')
+		if woff in formats
+			push(fonts, 'url("' + fileUrl + '.woff") format("woff")')
+		if opentype in formats || otf in formats
+			push(fonts, 'url("' + fileUrl + '.otf") format("opentype")')
+		if truetype in formats || ttf in formats
+			push(fonts, 'url("' + fileUrl + '.ttf") format("truetype")')
+		if svg in formats
+			push(fonts, 'url("' + fileUrl + '.svg#' + family + '") format("svg")')
+		src unquote(join(", ", fonts))
+		if font-weight
+			font-weight font-weight
+		if font-style
+			font-style font-style
