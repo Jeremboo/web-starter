@@ -6,11 +6,6 @@ var ip = require('ip');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
-var deps = [
-  'react/dist/react-with-addons.js',
-  'react-dom/dist/react-dom.js'
-];
-
 var myLocalIp = 'http://' + ip.address() + ':3333/';
 var basename = '';
 
@@ -46,13 +41,9 @@ var config = {
           loader: 'babel',
           query: {
             plugins: [
-              [ "module-alias", [
-                { src: path.resolve(__dirname, '../app/assets'), expose: "assets"},
-                { src: path.resolve(__dirname, '../app/components'), expose: "components"},
-                { src: path.resolve(__dirname, '../app/containers'), expose: "containers"},
-                { src: path.resolve(__dirname, '../app/core'), expose: "core"},
-                { src: path.resolve(__dirname, '../app/views'), expose: "views"},
-              ]]
+              [ 'module-resolver', {
+                'root': [path.resolve(__dirname, '../app/')],
+              }],
             ]
           },
         },
@@ -96,14 +87,5 @@ var config = {
       })
     ]
 };
-
-deps.forEach(function (dep) {
- var depPath = path.resolve(node_modules, dep);
- var depName = dep.split(path.sep)[0];
- config.resolve.alias[depName] = depPath;
- if(depName != 'react-dom') {
-   config.module.noParse.push(depPath);
- }
-});
 
 module.exports = config;
