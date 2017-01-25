@@ -6,7 +6,7 @@
 **/
 
 import React from 'react';
-import './Title.styl';
+import './style.styl';
 
 const Title = ({ text }) => <h1>{text}</h1>;
 Title.propTypes = {
