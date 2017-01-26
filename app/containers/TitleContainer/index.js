@@ -6,30 +6,27 @@
 **/
 
 import React, { Component } from 'react';
+import { PropTypes, inject, observer } from 'mobx-react';
 
 import Title from 'components/Title';
 
-export default class TitleContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      text: '...',
-    };
-  }
+class TitleContainer extends Component {
 
   componentDidMount() {
-    // simulate ajax request
-    setTimeout(() => this.setState({ text: 'Hello world' }), 200);
+    this.props.title.updateName();
   }
 
   componentWillUnmount() {}
 
   render() {
+    const { name, loaded } = this.props.title;
     return (
-      <Title
-        text={this.state.text}
-      />
+      <Title text={name} loaded={loaded} />
     );
   }
 }
+TitleContainer.propTypes = {
+  title: PropTypes.observableObject.isRequired,
+};
+
+export default inject('title')(observer(TitleContainer));
