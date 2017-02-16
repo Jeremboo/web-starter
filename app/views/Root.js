@@ -8,20 +8,20 @@ import Layout from './Layout';
 import HomeView from './HomeView';
 
 const Root = ({ store }) => {
-  const history = useRouterHistory(createHistory)({
+  const browserHistory = useRouterHistory(createHistory)({
     basename: process.env.BASENAME.length > 0 ? process.env.BASENAME : window.location.pathname,
   });
-
-  export const openPath = (path) => {
-    if (history.getCurrentLocation().pathname !== path) {
-      history.push(path);
-    }
-  };
 
   const history = syncHistoryWithStore(
     browserHistory,
     store,
   );
+  
+  export const openPath = (path) => {
+    if (history.getCurrentLocation().pathname !== path) {
+      history.push(path);
+    }
+  };
 
   return (
     <Provider store={store} >
