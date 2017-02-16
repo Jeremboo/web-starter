@@ -9,9 +9,14 @@ import Home from 'views/Home';
 import store from './store';
 
 const history = useRouterHistory(createHistory)({
-  basename: window.location.pathname,
-  // basename: process.env.BASENAME,
+  basename: process.env.BASENAME.length > 0 ? process.env.BASENAME : window.location.pathname,
 });
+
+export const openPath = (path) => {
+  if (history.getCurrentLocation().pathname !== path) {
+    history.push(path);
+  }
+};
 
 export default function Root() {
   return (
