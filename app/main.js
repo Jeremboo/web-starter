@@ -13,6 +13,3 @@ if (process.env.NODE_ENV === 'development') {
   require('./views/index.pug');
   require('./views/contact.pug');
 }
-
-
-ReactDOM.render(<Root />, app);
