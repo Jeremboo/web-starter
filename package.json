@@ -1,15 +1,15 @@
 {
   "name": "web-starter",
   "version": "1.0.0",
-  "description": "My organization for web developpement with React and Webpack.",
+  "description": "My organization for web developpement with Webpack.",
   "main": "app/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jeremboo/web-starter/tree/webpack-react"
   },
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack.config.js --open",
-    "build": "npm run clean && webpack --progress --config config/webpack.production.config.js",
+    "start": "NODE_ENV=development webpack-dev-server --open",
+    "build": "npm run clean && NODE_ENV=production webpack --progress",
     "clean": "rm -rf public"
   },
   "keywords": [
