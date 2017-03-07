@@ -1,3 +1,4 @@
+var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,15 +7,14 @@ var ip = require('ip');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
-var myLocalIp = 'http://' + ip.address() + ':3333/';
+var port = 3333;
+var myLocalIp = 'http://' + ip.address() + ':'+ port +'/';
 var basename = '';
 
 var config = {
     entry: [
       'babel-polyfill',
-      'webpack/hot/dev-server',
-      'webpack-dev-server/client?' + myLocalIp,
-      path.resolve(__dirname, '../app/main.js')
+      path.resolve(__dirname, '../app/main.js'),
     ],
     resolve: {
         alias: {}
@@ -25,20 +25,23 @@ var config = {
         publicPath: myLocalIp,
         devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
-    externals: {
-      'react/addons': true,
-      'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': true
+    devServer: {
+      contentBase: path.resolve(__dirname, '../app'),
+      // compress: true,
+      host: '0.0.0.0',
+      hot: true,
+      inline: true,
+      port: port,
+      historyApiFallback: true,
     },
-    debug: true,
-    devtool: "eval-source-map",
+    externals: {},
+    devtool: "eval-source-map", // TODO test cheap-eval-source-map // TODO hidden-source-map in production
     module: {
-      noParse: [],
-      loaders: [
+      rules: [
         {
           test: /\.jsx?$/,
           exclude: node_modules,
-          loader: 'babel',
+          loader: 'babel-loader',
           query: {
             plugins: [
               [ 'module-resolver', {
@@ -49,43 +52,74 @@ var config = {
         },
         {
           test: /\.(styl|css)$/,
-          loader: 'style!css?sourceMap!stylus?import=' + path.resolve(__dirname, '../app/style/base.styl'),
-        },
-        {
-          test: /\.json$/,
-          loader: 'json',
-          include: path.resolve(__dirname, '../app/assets/')
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              // options: { sourceMap: true },
+            },
+            {
+              loader: 'stylus-loader',
+              options: {
+                import: path.resolve(__dirname, '../app/style/base.styl'),
+              },
+            },
+          ]
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,
-          loader: 'file?name=imgs/[hash].[ext]',
+          use: 'file-loader?name=imgs/[hash].[ext]',
           include: path.resolve(__dirname, '../app/assets/imgs')
         },
         {
           test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'file?name=fonts/[hash].[ext]',
+          use: 'file-loader?name=fonts/[hash].[ext]',
           include: path.resolve(__dirname, '../app/assets/fonts')
-        }
+        },
+        {
+          test: /\.pug$/,
+          use: 'pug-loader',
+          include: path.resolve(__dirname, '../app/views'),
+        },
       ],
     },
-    stylus: {
-      use: [
-        poststylus(['autoprefixer'])
-      ]
-    },
     plugins: [
-      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.LoaderOptionsPlugin({
+        debug: true,
+        options: {
+          stylus: {
+            use: [
+              poststylus(['autoprefixer'])
+            ]
+          },
+        }
+      }),
       new webpack.DefinePlugin({
-      'process.env':{
-        'NODE_ENV': JSON.stringify('development'),
-        'BASENAME': JSON.stringify(basename),
-      },
-    }),
-      new HtmlWebpackPlugin({
-        template: './app/assets/index.html',
-        // favicon: './app/assets/imgs/favicon.png',
+        'process.env':{
+          'NODE_ENV': JSON.stringify('development'),
+          'BASENAME': JSON.stringify(basename),
+        },
       })
-    ]
+    ],
 };
+
+// GET PUG FILES
+const removeInstanceFromArray = (arr, instance) => {
+  const index = arr.indexOf(instance);
+  if (index !== -1) arr.splice(index, 1);
+  return arr;
+};
+const pugFiles = fs.readdirSync(path.resolve(__dirname, '../app/views'));
+removeInstanceFromArray(pugFiles, '_layout.pug');
+
+// ADD HtmlWebpackPlugin plugins for each pugFiles
+for (let i = 0; i < pugFiles.length; i++) {
+  config.plugins.push(new HtmlWebpackPlugin({
+    filename: pugFiles[i].split('.')[0] + '.html',
+    template: path.resolve(__dirname, '../app/views/' + pugFiles[i]),
+    // favicon: './app/assets/imgs/favicon.png',
+  }));
+}
 
 module.exports = config;
