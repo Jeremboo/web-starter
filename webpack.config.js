@@ -50,12 +50,13 @@ var config = {
           'style-loader',
           {
             loader: 'css-loader',
-            // options: { sourceMap: true },
+            options: { sourceMap: true },
           },
           {
             loader: 'stylus-loader',
             options: {
               import: path.resolve(__dirname, './app/style/base.styl'),
+              sourceMap: true,
             },
           },
         ],
