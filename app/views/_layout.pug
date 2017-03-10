@@ -29,5 +29,9 @@ mixin layout(title)
       meta(name='viewport' content='width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no')
       link(rel='icon' type='image/png' href='')
     body
-      if block
-        block
+      div#barba-wrapper
+        a(href='/index.html')= 'index'
+        a(href='/contact.html')= 'contact'
+        a(href='/list.html')= 'list'
+        if block
+          block

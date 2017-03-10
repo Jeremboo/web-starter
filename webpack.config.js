@@ -139,6 +139,7 @@ if (nodeEnv === 'development') {
 // ##############
 // PRODUCTION
 } else if (nodeEnv === 'production') {
+  config.output.publicPath = basename;
   config.devtool = 'hidden-source-map';
 
   // Add ExtractTextPlugin to css|styl files
