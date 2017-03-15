@@ -1,4 +1,4 @@
-# My web app starter kit with Webpack and React
+# My web app starter kit with Webpack, React and Three.js
 
 Just a architecture to manage a web project with :
 
@@ -33,11 +33,3 @@ Just a architecture to manage a web project with :
 Follow the [AirBnb Javascript Style Guide](https://github.com/airbnb/javascript) with her
 Eslint. You can also follow her
 [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
-
-## TODO
-
-- **Babel preset airbnb :** [???](https://github.com/airbnb/babel-preset-airbnb)
-
-- **Karma :** remplace Mocha by Karma ?
-
-- **Webpack Extract text plugging**

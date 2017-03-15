@@ -65,7 +65,11 @@ var config = {
           test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           loader: 'file?name=fonts/[hash].[ext]',
           include: path.resolve(__dirname, '../app/assets/fonts')
-        }
+        },
+        {
+          test: /\.glsl$/,
+          loader: 'webpack-glsl'
+        },
       ],
     },
     stylus: {

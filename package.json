@@ -1,7 +1,7 @@
 {
   "name": "web-starter",
   "version": "1.0.0",
-  "description": "My organization for web developpement with React and Webpack.",
+  "description": "My organization for web developpement with React, Webpack and threejs.",
   "main": "app/main.js",
   "repository": {
     "type": "git",
@@ -25,10 +25,14 @@
   "author": "Jérémie Boulay <jeremi.boulay@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@superguigui/wagner": "^0.1.5",
+    "dat-gui": "^0.5.0",
+    "glslify": "^6.0.1",
     "history": "^2.1.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-router": "^2.7.0"
+    "react-router": "^2.7.0",
+    "three": "^0.84.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
@@ -65,6 +69,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.1",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-glsl-loader": "^1.0.1"
   }
 }

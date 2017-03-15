@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 
-import Title from 'components/Title';
+import Title from 'components/title';
 
 export default class TitleContainer extends Component {
   constructor(props) {
