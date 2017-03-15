@@ -1,7 +1,8 @@
 const props = {
   postProcess: {
-    enabled: false,
+    enabled: true,
   },
+  rotationSpeed: 0.01,
 };
 
 export default props;

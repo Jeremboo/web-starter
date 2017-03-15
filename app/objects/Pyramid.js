@@ -31,6 +31,6 @@ export default class Pyramid extends Object3D {
   }
 
   update() {
-    this.rotation.x += 0.01;
+    this.rotation.x += props.rotationSpeed;
   }
 }
