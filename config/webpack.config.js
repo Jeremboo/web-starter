@@ -17,7 +17,7 @@ var config = {
       path.resolve(__dirname, '../app/main.js')
     ],
     resolve: {
-        alias: {}
+        alias: { }
     },
     output: {
         path: path.resolve(__dirname, '../public'),
@@ -66,10 +66,8 @@ var config = {
           loader: 'file?name=fonts/[hash].[ext]',
           include: path.resolve(__dirname, '../app/assets/fonts')
         },
-        {
-          test: /\.glsl$/,
-          loader: 'webpack-glsl'
-        },
+        { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'raw' },
+        { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'glslify' }
       ],
     },
     stylus: {

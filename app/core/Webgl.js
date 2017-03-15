@@ -26,6 +26,7 @@ export default class Webgl {
     this._passes = [];
     this.initPostprocessing();
 
+    this.initPostprocessing = this.initPostprocessing.bind(this);
     this.update = this.update.bind(this);
     this.resize = this.resize.bind(this);
 
@@ -37,9 +38,9 @@ export default class Webgl {
     // TODO add postprocess.js add() / remove()
     this._composer = new Composer(this._renderer);
 
-    if (!props.postProcess.enabled) return;
-    this._passes.push(new VignettePass());
-    this._passes.push(new FXAAPass());
+    // if (!props.postProcess.enabled) return;
+    // this._passes.push(new VignettePass({ reduction: 0.5 }));
+    // this._passes.push(new FXAAPass({}));
   }
 
   add(mesh) {
@@ -57,14 +58,14 @@ export default class Webgl {
 
   update() {
     if (props.postProcess.enabled) {
-      this._composer.reset();
-      this._composer.renderer.clear();
-      this._composer.render(this.scene, this.camera);
-      let i;
-      for (i = this._passes.length; i > 0; i--) {
-        this._composer.pass(this._passes[i]);
-      }
-      this._composer.toScreen();
+      // this._composer.reset();
+      // this._composer.renderer.clear();
+      // this._composer.render(this.scene, this.camera);
+      // let i;
+      // for (i = this._passes.length - 1; i >= 0; i--) {
+      //   this._composer.pass(this._passes[i]);
+      // }
+      // this._composer.toScreen();
     }
 
     this._renderer.render(this.scene, this.camera);

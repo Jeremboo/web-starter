@@ -60,10 +60,8 @@ module.exports = {
       loader: 'file?name=fonts/[name].[ext]',
       include: path.resolve(__dirname, '../app/assets/fonts')
     },
-    {
-      test: /\.glsl$/,
-      loader: 'webpack-glsl'
-    }]
+    { test: /\.glsl|frag|vert)$/, loader: 'raw', exclude: node_modules },
+    { test: /\.(glsl|frag|vert)$/, loader: 'glslify', exclude: node_modules }]
   },
   stylus: {
     use: [
