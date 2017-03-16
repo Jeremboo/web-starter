@@ -1,7 +1,7 @@
 import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
-import { Composer } from '@superguigui/wagner';
-import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
-import VignettePass from '@superguigui/wagner/src/passes/vignette/VignettePass';
+// import { Composer } from '@superguigui/wagner';
+// import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
+// import VignettePass from '@superguigui/wagner/src/passes/vignette/VignettePass';
 
 import props from 'core/props';
 import loop from 'core/loop';
@@ -36,7 +36,7 @@ export default class Webgl {
 
   initPostprocessing() {
     // TODO add postprocess.js add() / remove()
-    this._composer = new Composer(this._renderer);
+    // this._composer = new Composer(this._renderer);
 
     // if (!props.postProcess.enabled) return;
     // this._passes.push(new VignettePass({ reduction: 0.5 }));
@@ -58,14 +58,14 @@ export default class Webgl {
 
   update() {
     if (props.postProcess.enabled) {
-      // this._composer.reset();
-      // this._composer.renderer.clear();
-      // this._composer.render(this.scene, this.camera);
-      // let i;
-      // for (i = this._passes.length - 1; i >= 0; i--) {
-      //   this._composer.pass(this._passes[i]);
-      // }
-      // this._composer.toScreen();
+      this._composer.reset();
+      this._composer.renderer.clear();
+      this._composer.render(this.scene, this.camera);
+      let i;
+      for (i = this._passes.length - 1; i >= 0; i--) {
+        this._composer.pass(this._passes[i]);
+      }
+      this._composer.toScreen();
     }
 
     this._renderer.render(this.scene, this.camera);

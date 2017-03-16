@@ -1,6 +1,6 @@
 const props = {
   postProcess: {
-    enabled: true,
+    enabled: false,
   },
   rotationSpeed: 0.01,
 };
