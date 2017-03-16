@@ -46,14 +46,14 @@ export default class Webgl {
   add(mesh) {
     this.scene.add(mesh);
     if (!mesh.update) return;
-    loop.add(mesh.update);
+    loop.add(() => { mesh.update(); });
   }
 
   remove(mesh) {
     console.log('TODO: remove mesh into loop');
     this.remove(mesh);
     if (!mesh.update) return;
-    loop.remove(mesh.update);
+    loop.remove(() => { mesh.update(); });
   }
 
   update() {
