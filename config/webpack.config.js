@@ -17,7 +17,7 @@ var config = {
       path.resolve(__dirname, '../app/main.js')
     ],
     resolve: {
-        alias: { }
+      alias: {},
     },
     output: {
         path: path.resolve(__dirname, '../public'),
@@ -49,7 +49,7 @@ var config = {
         },
         {
           test: /\.(styl|css)$/,
-          loader: 'style!css?sourceMap!stylus?import=' + path.resolve(__dirname, '../app/style/base.styl'),
+          loader: 'style!css?sourceMap!stylus',
         },
         {
           test: /\.json$/,
@@ -57,9 +57,14 @@ var config = {
           include: path.resolve(__dirname, '../app/assets/')
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/,
+          test: /\.(png|jpeg|jpg|gif|svg)$/,
           loader: 'file?name=imgs/[hash].[ext]',
           include: path.resolve(__dirname, '../app/assets/imgs')
+        },
+        {
+          test: /\.pdf$/,
+          loader: 'file?name=[hash].[ext]',
+          include: path.resolve(__dirname, '../app/assets')
         },
         {
           test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -73,7 +78,11 @@ var config = {
     stylus: {
       use: [
         poststylus(['autoprefixer'])
-      ]
+      ],
+      import: [
+        path.resolve(__dirname, '../app/style/variables.styl'),
+        path.resolve(__dirname, '../app/style/mixins.styl'),
+      ],
     },
     plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
@@ -85,7 +94,7 @@ var config = {
     }),
       new HtmlWebpackPlugin({
         template: './app/assets/index.html',
-        // favicon: './app/assets/imgs/favicon.png',
+        favicon: './app/assets/imgs/favicon.ico',
       })
     ]
 };

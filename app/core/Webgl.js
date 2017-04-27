@@ -1,4 +1,7 @@
-import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
+import { Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap } from 'three';
+
+// import OrbitControls from 'vendors/OrbitControls';
+
 // import { Composer } from '@superguigui/wagner';
 // import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
 // import VignettePass from '@superguigui/wagner/src/passes/vignette/VignettePass';
@@ -13,14 +16,21 @@ export default class Webgl {
     this.scene = new Scene();
 
     this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
-    this.camera.position.z = 10;
+    this.camera.position.z = 100;
+    this.currentCamera = this.camera;
 
     this._renderer = new WebGLRenderer({
       antialias: true,
     });
-    this._renderer.setPixelRatio(window.devicePixelRatio);
-    this._renderer.setClearColor(0x0c171a);
+    this._renderer.setPixelRatio(window.devicePixelRatio || 1);
+    this._renderer.setClearColor(0xFEFEFE, 1);
+    this._renderer.shadowMap.enabled = true;
+    this._renderer.shadowMap.type = PCFSoftShadowMap;
+
     this.dom = this._renderer.domElement;
+
+    // this.controls = new OrbitControls(this.camera, this.dom);
+    // this.controls.enabled = false;
 
     this._composer = false;
     this._passes = [];
@@ -30,7 +40,7 @@ export default class Webgl {
     this.update = this.update.bind(this);
     this.resize = this.resize.bind(this);
 
-    loop.add(this.update);
+    loop.add('0000', this.update);
     this.resize(w, h);
   }
 
@@ -43,17 +53,21 @@ export default class Webgl {
     // this._passes.push(new FXAAPass({}));
   }
 
-  add(mesh) {
+  add(mesh, _id) {
+    const id = _id || mesh.uuid;
+    if (!id) {
+      console.log('ERROR: Webgl.add(): need an id');
+      return;
+    }
     this.scene.add(mesh);
     if (!mesh.update) return;
-    loop.add(() => { mesh.update(); });
+    loop.add(id, () => { mesh.update(); });
   }
 
-  remove(mesh) {
-    console.log('TODO: remove mesh into loop');
-    this.remove(mesh);
+  remove(mesh, id) {
+    this.scene.remove(mesh);
     if (!mesh.update) return;
-    loop.remove(() => { mesh.update(); });
+    loop.remove(id || mesh.uuid, () => { mesh.update(); });
   }
 
   update() {
@@ -68,20 +82,20 @@ export default class Webgl {
       this._composer.toScreen();
     }
 
-    this._renderer.render(this.scene, this.camera);
+    this._renderer.render(this.scene, this.currentCamera);
   }
 
   resize(w, h) {
     this.width = w;
     this.height = h;
 
-    this.camera.aspect = w / h;
-    this.camera.updateProjectionMatrix();
+    this.currentCamera.aspect = w / h;
+    this.currentCamera.updateProjectionMatrix();
 
     this._renderer.setSize(w, h);
 
     if (props.postProcess.enabled) {
-     this._composer.setSize(this.innerWidth, this.innerHeight);
-   }
+     this._composer.setSize(w, h);
+    }
   }
 }

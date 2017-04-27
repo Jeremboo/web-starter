@@ -6,7 +6,7 @@ var poststylus = require('poststylus');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
-var basename = '';
+var basename = '/';
 
 module.exports = {
   entry:{
@@ -17,6 +17,9 @@ module.exports = {
     ],
     vendors: ['react', 'react-dom', 'react-router', 'history'],
   },
+  resolve: {
+    alias: {},
+  },
   output: {
     path: path.resolve(__dirname, '../public'),
     publicPath: basename,
@@ -25,7 +28,7 @@ module.exports = {
   externals: {
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true
+    'react/lib/ReactContext': true,
   },
   module: {
     loaders: [{
@@ -38,12 +41,11 @@ module.exports = {
             'root': [path.resolve(__dirname, '../app/')],
           }],
         ]
-        ]
       },
     },
     {
       test: /\.(styl|css)$/,
-      loader: ExtractTextPlugin.extract('style','css!stylus?import=' + path.resolve(__dirname, '../app/style/base.styl'))
+      loader: ExtractTextPlugin.extract('style','css!stylus')
     },
     {
       test: /\.(png|jpe?g|gif|svg)$/,
@@ -60,13 +62,22 @@ module.exports = {
       loader: 'file?name=fonts/[name].[ext]',
       include: path.resolve(__dirname, '../app/assets/fonts')
     },
-    { test: /\.glsl|frag|vert)$/, loader: 'raw', exclude: node_modules },
+    {
+      test: /\.pdf$/,
+      loader: 'file?name=[name].[ext]',
+      include: path.resolve(__dirname, '../app/assets')
+    },
+    { test: /\.(glsl|frag|vert)$/, loader: 'raw', exclude: node_modules },
     { test: /\.(glsl|frag|vert)$/, loader: 'glslify', exclude: node_modules }]
   },
   stylus: {
     use: [
       poststylus(['autoprefixer'])
-    ]
+    ],
+    import: [
+      path.resolve(__dirname, '../app/style/variables.styl'),
+      path.resolve(__dirname, '../app/style/mixins.styl'),
+    ],
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
@@ -91,7 +102,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './app/assets/index.html',
-      // favicon: './app/assets/imgs/favicon.png',
+      favicon: './app/assets/imgs/favicon.ico',
     })
   ]
 };

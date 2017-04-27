@@ -6,7 +6,7 @@ import vertexShader from 'shaders/example.v.glsl';
 import fragmentShader from 'shaders/example.f.glsl';
 
 
-export default class Pyramid extends Object3D {
+export default class Exemple extends Object3D {
   constructor() {
     super();
 
