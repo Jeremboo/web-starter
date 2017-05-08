@@ -56,7 +56,10 @@ var config = {
           {
             loader: 'stylus-loader',
             options: {
-              import: path.resolve(__dirname, './app/style/base.styl'),
+              import: [
+                path.resolve(__dirname, './app/style/variables.styl'),
+                path.resolve(__dirname, './app/style/mixins.styl'),
+              ],
               sourceMap: true,
             },
           },
@@ -124,15 +127,16 @@ if (nodeEnv === 'development') {
   config.output.publicPath = myLocalIp;
   config.output.devtoolModuleFilenameTemplate = 'webpack:///[absolute-resource-path]';
   config.devServer = {
-    contentBase: path.resolve(__dirname, './app'),
-    // Release of webpack-dev-server 2.4.3 => https://github.com/webpack/webpack-dev-server/issues/882
-    public: ipAdress,
     // compress: true,
+    contentBase: path.resolve(__dirname, './app'),
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    historyApiFallback: true,
     host: '0.0.0.0',
     hot: true,
     inline: true,
     port: port,
-    historyApiFallback: true,
+    // Release of webpack-dev-server 2.4.3 => https://github.com/webpack/webpack-dev-server/issues/882
+    public: ipAdress,
   };
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
   loaderOptions.debug = true;
