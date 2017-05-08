@@ -130,7 +130,7 @@ if (nodeEnv === 'development') {
     // proxy: {
     //  '**': myLocalIp,
     //  disableHostCheck: true,
-    },
+    // },
     // compress: true,
     host: '0.0.0.0',
     hot: true,
