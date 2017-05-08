@@ -9,7 +9,8 @@ var ip = require('ip');
 var node_modules = path.resolve(__dirname, './node_modules');
 
 var port = 3333;
-var myLocalIp = 'http://' + ip.address() + ':'+ port +'/';
+var ipAdress = ip.address();
+var myLocalIp = 'http://' + ipAdress + ':'+ port +'/';
 var basename = '';
 
 var nodeEnv = process.env.NODE_ENV;
@@ -124,6 +125,12 @@ if (nodeEnv === 'development') {
   config.output.devtoolModuleFilenameTemplate = 'webpack:///[absolute-resource-path]';
   config.devServer = {
     contentBase: path.resolve(__dirname, './app'),
+    // Release of webpack-dev-server 2.4.3 => https://github.com/webpack/webpack-dev-server/issues/882
+    public: ipAdress,
+    // proxy: {
+    //  '**': myLocalIp,
+    //  disableHostCheck: true,
+    },
     // compress: true,
     host: '0.0.0.0',
     hot: true,
