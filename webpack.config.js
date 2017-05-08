@@ -15,8 +15,20 @@ var basename = '';
 
 var nodeEnv = process.env.NODE_ENV;
 
+// utils
+const removeInstanceFromArray = (arr, instance) => {
+  const index = arr.indexOf(instance);
+  if (index !== -1) arr.splice(index, 1);
+  return arr;
+};
+
 // ##############
-// BASE
+// GET PUG FILES
+const pugViews = fs.readdirSync(path.resolve(__dirname, './app/views'));
+removeInstanceFromArray(pugViews, '_layout.pug');
+
+// ##############
+// WEBPACK BASE
 var config = {
   entry: [
     'babel-polyfill',
@@ -87,26 +99,18 @@ var config = {
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv),
         BASENAME: JSON.stringify(basename),
+        VIEWS: JSON.stringify(pugViews),
       },
     }),
   ],
 };
 
 // ##############
-// GET PUG FILES
-const removeInstanceFromArray = (arr, instance) => {
-  const index = arr.indexOf(instance);
-  if (index !== -1) arr.splice(index, 1);
-  return arr;
-};
-const pugFiles = fs.readdirSync(path.resolve(__dirname, './app/views'));
-removeInstanceFromArray(pugFiles, '_layout.pug');
-
-// ADD HtmlWebpackPlugin plugins for each pugFiles
-for (let i = 0; i < pugFiles.length; i++) {
+// ADD HtmlWebpackPlugin plugins for each pugViews
+for (let i = 0; i < pugViews.length; i++) {
   config.plugins.push(new HtmlWebpackPlugin({
-    filename: pugFiles[i].split('.')[0] + '.html',
-    template: path.resolve(__dirname, './app/views/' + pugFiles[i]),
+    filename: pugViews[i].split('.')[0] + '.html',
+    template: path.resolve(__dirname, './app/views/' + pugViews[i] + '/index.pug'),
     // favicon: './app/assets/imgs/favicon.png',
   }));
 }

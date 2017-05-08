@@ -5,44 +5,26 @@
 *
 **/
 
-import { pushView, start, View } from 'core/barbaExtend';
-import 'style/fonts.styl'; // Must be imported separatly to the base
+import { start } from 'core/barbaExtend';
+
+import 'style/fonts.styl';
+import 'style/base.styl';
+
+// START
+let i;
+const views = process.env.VIEWS;
+
+for (i = 0; i < views.length; i++) {
+  require(`./views/${views[i]}/index.js`);
+}
+
+start();
 
 // BUG .pug file do not auto reloading
 // https://github.com/jantimon/html-webpack-plugin/issues/100
+// fixed with theres lines
 if (process.env.NODE_ENV === 'development') {
-  require('./views/index.pug');
-  require('./views/contact.pug');
-}
-
-class ClassicPage extends View {
-  constructor(namespace) {
-    super(namespace);
-    this.title = false;
-  }
-
-  enter(resolve, reject) {
-    this.title = this.elm.querySelector('h1');
-    this.title.style.opacity = 1;
-    setTimeout(resolve, 200);
-  }
-
-  loadToExit(resolve, reject) {
-    this.title.style.opacity = 0.5;
-    setTimeout(resolve, 200);
-  }
-
-  leave(resolve, reject) {
-    this.title.style.opacity = 0;
-    setTimeout(resolve, 200);
+  for (i = 0; i < views.length; i++) {
+    require(`./views/${views[i]}/index.pug`);
   }
 }
-
-// ROUTER
-pushView('index', ClassicPage);
-pushView('contact', ClassicPage);
-pushView('list', ClassicPage);
-
-
-// START
-start();
