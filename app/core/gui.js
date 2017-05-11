@@ -9,6 +9,8 @@ class Gui {
     this.gui = false;
 
     this.addMesh = this.addMesh.bind(this);
+    this.initGui = this.initGui.bind(this);
+    this.toggleHide = this.toggleHide.bind(this);
   }
 
   initGui() {
@@ -56,15 +58,15 @@ class Gui {
     return objectFolder;
   }
 
-  addLight(light, name = `Light-${light.uuid}`, props) {
+  addLight(light, name = `Light-${light.uuid}`, params) {
     props.rotation = props.rotation || false;
-    const lightFolder = this.addObject3D(light, name, props);
+    const lightFolder = this.addObject3D(light, name, params);
     if (lightFolder) lightFolder.add(light, 'power', 0, 25.132741229);
   }
 
-  addMesh(mesh, name = `Mesh-${mesh.uuid}`, props) {
-    const meshFolder = this.addObject3D(mesh, name, props);
+  addMesh(mesh, name = `Mesh-${mesh.uuid}`, params) {
+    const meshFolder = this.addObject3D(mesh, name, params);
   }
 }
-
-export default new Gui();
+const gui = new Gui();
+export default gui;

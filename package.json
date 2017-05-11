@@ -8,8 +8,8 @@
     "url": "https://github.com/Jeremboo/web-starter/tree/webpack-react"
   },
   "scripts": {
-    "start": "webpack-dev-server --progress --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback --host 0.0.0.0",
-    "build": "npm run clean && webpack --progress --config config/webpack.production.config.js",
+    "start": "webpack-dev-server --hot --inline --config config/webpack.config.js",
+    "build": "npm run clean && webpack --config config/webpack.production.config.js",
     "clean": "rm -rf public",
     "test": "NODE_PATH=app mocha config/mocha.config.js ./**/*.spec.js --recursive",
     "test:watch": "npm test -- --watch"
@@ -28,13 +28,14 @@
     "dat-gui": "^0.5.0",
     "glslify": "^6.0.1",
     "history": "^2.1.2",
+    "prop-types": "^15.5.9",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-router": "^2.7.0",
     "three": "^0.84.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.1",
+    "autoprefixer": "^6.7.6",
     "babel": "^6.5.2",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
@@ -45,7 +46,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.14.0",
     "chai": "^3.5.0",
-    "css-loader": "^0.23.1",
+    "css-loader": "^0.26.2",
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
     "eslint-config-airbnb": "^10.0.1",
@@ -53,10 +54,10 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.8.5",
     "glslify-loader": "^1.0.2",
-    "html-webpack-plugin": "^2.7.2",
+    "html-webpack-plugin": "^2.28.0",
     "ignore-styles": "^5.0.1",
     "ip": "^1.1.4",
     "jsdom": "^9.5.0",
@@ -66,10 +67,10 @@
     "poststylus": "^0.2.3",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.3.1",
-    "style-loader": "^0.13.1",
+    "style-loader": "^0.13.2",
     "stylus": "^0.54.5",
-    "stylus-loader": "^2.1.1",
-    "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "stylus-loader": "^3.0.1",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.3"
   }
 }

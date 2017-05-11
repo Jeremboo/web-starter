@@ -19,6 +19,8 @@ class Engine {
     this.helperEnabled = false;
     this.onResize = false; // Callback of onResize listener
 
+    // objects
+    this.lights = [];
     this._exemple = false;
 
     this.init = this.init.bind(this);
@@ -54,7 +56,7 @@ class Engine {
 
   initWebgl() {
     return new Promise((resolve) => {
-      if (props.debug.webgl || process.env.NODE_ENV === 'production') {
+      if (!props.debug.disableWebgl || process.env.NODE_ENV === 'production') {
         try {
           // Start webgl
           this.webgl = new Webgl(window.innerWidth, window.innerHeight);

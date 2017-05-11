@@ -10,7 +10,7 @@ export default class Exemple extends Object3D {
   constructor() {
     super();
 
-    const geometry = new TetrahedronGeometry(2, 0);
+    const geometry = new TetrahedronGeometry(10, 0);
     // const material = new MeshBasicMaterial({ color: 0xffffff });
     const material = new ShaderMaterial({
       uniforms: {
@@ -32,5 +32,6 @@ export default class Exemple extends Object3D {
 
   update() {
     this.rotation.x += props.rotationSpeed;
+    this.rotation.y += props.rotationSpeed;
   }
 }

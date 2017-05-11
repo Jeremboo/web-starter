@@ -31,64 +31,71 @@ module.exports = {
     'react/lib/ReactContext': true,
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: node_modules,
-      loader: 'babel',
-      query: {
-        plugins: [
-          [ 'module-resolver', {
-            'root': [path.resolve(__dirname, '../app/')],
-          }],
-        ]
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: node_modules,
+        loader: 'babel-loader',
+        query: {
+          plugins: [
+            ['module-resolver', {
+              root: [path.resolve(__dirname, './app/')],
+            }],
+          ],
+        },
       },
-    },
-    {
-      test: /\.(styl|css)$/,
-      loader: ExtractTextPlugin.extract('style','css!stylus')
-    },
-    {
-      test: /\.(png|jpe?g|gif|svg)$/,
-      loader: 'file?name=imgs/[name].[ext]',
-      include: path.resolve(__dirname, '../app/assets/imgs')
-    },
-    {
-      test: /\.json$/,
-      loader: 'json',
-      include: path.resolve(__dirname, '../app/assets')
-    },
-    {
-      test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file?name=fonts/[name].[ext]',
-      include: path.resolve(__dirname, '../app/assets/fonts')
-    },
-    {
-      test: /\.pdf$/,
-      loader: 'file?name=[name].[ext]',
-      include: path.resolve(__dirname, '../app/assets')
-    },
-    { test: /\.(glsl|frag|vert)$/, loader: 'raw', exclude: node_modules },
-    { test: /\.(glsl|frag|vert)$/, loader: 'glslify', exclude: node_modules }]
-  },
-  stylus: {
-    use: [
-      poststylus(['autoprefixer'])
-    ],
-    import: [
-      path.resolve(__dirname, '../app/style/variables.styl'),
-      path.resolve(__dirname, '../app/style/mixins.styl'),
+      {
+        test: /\.(styl|css)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true },
+          },
+          {
+            loader: 'stylus-loader',
+            options: {
+              import: [
+                path.resolve(__dirname, './app/style/variables.styl'),
+                path.resolve(__dirname, './app/style/mixins.styl'),
+              ],
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.json$/,
+        loader: 'json',
+        include: path.resolve(__dirname, '../app/assets/')
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: 'file-loader?name=imgs/[hash].[ext]',
+        include: path.resolve(__dirname, './app/assets/imgs'),
+      },
+      {
+        test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'file-loader?name=fonts/[hash].[ext]',
+        include: path.resolve(__dirname, './app/assets/fonts'),
+      },
+      {
+        test: /\.pdf$/,
+        loader: 'file?name=[hash].[ext]',
+        include: path.resolve(__dirname, '../app/assets')
+      },
+      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'raw' },
+      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'glslify' }
     ],
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: true, drop_console: true, },
       comments: false,
-      sourceMap: false,
+      sourceMap: true,
       mangle: true,
-      minimize: true,
     }),
     new webpack.DefinePlugin({
       'process.env':{
