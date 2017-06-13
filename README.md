@@ -1,13 +1,6 @@
-# My web app starter kit with Webpack and React
+# Webpack-react@1.0.0 - 13/06/2017
 
-Just a architecture to manage a web project with :
-
-- [Webpack]()
-- [Babel]()
-- [Stylus]()
-- [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
-
-- [React]()
+Just a architecture to manage a web project in React
 
 ## Commands :
 
@@ -21,23 +14,22 @@ Just a architecture to manage a web project with :
 
 ## Details :
 
-- **Webpack with :**
+- [React 15.5.4]()
+
+- [Webpack 2.6.1]()
   - `dev`and `prod` environment
   - Auto reloading
   - ...
 
-- **Babel for using ES6.**
+- [Babel-cli 6.24.1]()
 
-- **Style Guide :**
+- [Stylus 0.54.5]()
 
-Follow the [AirBnb Javascript Style Guide](https://github.com/airbnb/javascript) with her
-Eslint. You can also follow her
-[AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+- [EsLint 3.19.0](http://eslint.org/)
+  - Following the [AirBnb EsLint 15.0.1](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) You can also follow her
+  [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+
 
 ## TODO
 
-- **Babel preset airbnb :** [???](https://github.com/airbnb/babel-preset-airbnb)
-
-- **Karma :** remplace Mocha by Karma ?
-
-- **Webpack Extract text plugging**
+- More unit test config

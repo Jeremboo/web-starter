@@ -6,6 +6,7 @@
 **/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Layout = ({ children }) => (
   <div id="layout">
@@ -13,7 +14,7 @@ const Layout = ({ children }) => (
   </div>
 );
 Layout.propTypes = {
-  children: React.PropTypes.any.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export default Layout;

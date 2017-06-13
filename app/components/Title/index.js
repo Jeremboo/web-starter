@@ -6,12 +6,16 @@
 **/
 
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './style.styl';
 
 const Title = ({ text }) => <h1>{text}</h1>;
+
 Title.propTypes = {
-  text: React.PropTypes.string,
+  text: PropTypes.string,
 };
+
 Title.defaultProps = {
   text: '...',
 };

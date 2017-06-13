@@ -6,22 +6,22 @@ var ip = require('ip');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
-var myLocalIp = 'http://' + ip.address() + ':3333/';
+var port = 3333;
+var ipAdress = ip.address() + ':' + port;
+var myLocalIp = 'http://' + ipAdress + '/';
 var basename = '';
 
 var config = {
     entry: [
       'babel-polyfill',
-      'webpack/hot/dev-server',
-      'webpack-dev-server/client?' + myLocalIp,
       path.resolve(__dirname, '../app/main.js')
     ],
     resolve: {
-        alias: {}
+      alias: {},
     },
     output: {
         path: path.resolve(__dirname, '../public'),
-        filename: 'bundle.js',
+        filename: '[name].js',
         publicPath: myLocalIp,
         devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
@@ -30,26 +30,52 @@ var config = {
       'react/lib/ExecutionEnvironment': true,
       'react/lib/ReactContext': true
     },
-    debug: true,
     devtool: "eval-source-map",
+    devServer: {
+      // compress: true,
+      contentBase: path.resolve(__dirname, '../app'),
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      historyApiFallback: true,
+      host: '0.0.0.0',
+      hot: true,
+      inline: true,
+      port: port,
+      // Release of webpack-dev-server 2.4.3 => https://github.com/webpack/webpack-dev-server/issues/882
+      public: ipAdress,
+    },
     module: {
-      noParse: [],
-      loaders: [
+      rules: [
         {
           test: /\.jsx?$/,
           exclude: node_modules,
-          loader: 'babel',
+          loader: 'babel-loader',
           query: {
             plugins: [
-              [ 'module-resolver', {
-                'root': [path.resolve(__dirname, '../app/')],
+              ['module-resolver', {
+                root: [path.resolve(__dirname, '../app/')],
               }],
-            ]
+            ],
           },
         },
         {
           test: /\.(styl|css)$/,
-          loader: 'style!css?sourceMap!stylus?import=' + path.resolve(__dirname, '../app/style/base.styl'),
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true },
+            },
+            {
+              loader: 'stylus-loader',
+              options: {
+                import: [
+                  path.resolve(__dirname, '../app/style/variables.styl'),
+                  path.resolve(__dirname, '../app/style/mixins.styl'),
+                ],
+                sourceMap: true,
+              },
+            },
+          ],
         },
         {
           test: /\.json$/,
@@ -58,23 +84,30 @@ var config = {
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,
-          loader: 'file?name=imgs/[hash].[ext]',
-          include: path.resolve(__dirname, '../app/assets/imgs')
+          use: 'file-loader?name=imgs/[hash].[ext]',
+          include: path.resolve(__dirname, '../app/assets/imgs'),
         },
         {
           test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'file?name=fonts/[hash].[ext]',
-          include: path.resolve(__dirname, '../app/assets/fonts')
-        }
+          use: 'file-loader?name=fonts/[hash].[ext]',
+          include: path.resolve(__dirname, '../app/assets/fonts'),
+        },
+        {
+          test: /\.pdf$/,
+          loader: 'file?name=[hash].[ext]',
+          include: path.resolve(__dirname, '../app/assets')
+        },
       ],
     },
-    stylus: {
-      use: [
-        poststylus(['autoprefixer'])
-      ]
-    },
     plugins: [
-      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.LoaderOptionsPlugin({
+        debug: true,
+        options: {
+          stylus: {
+            use: [poststylus(['autoprefixer'])],
+          },
+        },
+      }),
       new webpack.DefinePlugin({
       'process.env':{
         'NODE_ENV': JSON.stringify('development'),
@@ -82,8 +115,8 @@ var config = {
       },
     }),
       new HtmlWebpackPlugin({
-        template: './app/assets/index.html',
-        // favicon: './app/assets/imgs/favicon.png',
+        template: path.resolve(__dirname, '../app/assets/index.html'),
+        // favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
       })
     ]
 };
