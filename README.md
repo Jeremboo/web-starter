@@ -1,11 +1,8 @@
-# My web app starter kit with Webpack
+# Barba@1.0.0 - 19/06/2017
 
-Just a architecture to manage a web project with :
+An architecture to manage a web project with Barba.js. It permit to have different
+html pages with transition between them. It is better for the referencement.
 
-- [Webpack]()
-- [Babel]()
-- [Stylus]()
-- [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 
 ## Commands :
 
@@ -15,19 +12,27 @@ Just a architecture to manage a web project with :
 
 ## Configs :
 
-  Update the `basename` variable into the `webpack.config.js` when your website is not at the root.
+  Update the `basename` variable into the `webpack.production.config.js`.
 
 ## Details :
 
-- **Webpack with :**
+- [React 15.5.4]()
+
+- [Webpack 2.6.1]()
   - `dev`and `prod` environment
   - Auto reloading
   - ...
 
-- **Babel for using ES6.**
+- [Babel-cli 6.24.1]()
 
-- **Style Guide :**
+- [Stylus 0.54.5]()
 
-Follow the [AirBnb Javascript Style Guide](https://github.com/airbnb/javascript) with her
-Eslint. You can also follow her
-[AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+- [EsLint 3.19.0](http://eslint.org/)
+  - Following the [AirBnb EsLint 15.0.1](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) You can also follow her
+  [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+
+
+## TODO
+
+- Subcomponent
+- one JS file by html page. Separate the mecanic.
