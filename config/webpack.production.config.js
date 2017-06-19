@@ -68,13 +68,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        use: 'file-loader?name=imgs/[hash].[ext]',
-        include: path.resolve(__dirname, './app/assets/imgs'),
+        use: 'file-loader?name=imgs/[name].[ext]',
+        include: path.resolve(__dirname, '../app/assets/imgs'),
       },
       {
         test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: 'file-loader?name=fonts/[hash].[ext]',
-        include: path.resolve(__dirname, './app/assets/fonts'),
+        use: 'file-loader?name=fonts/[name].[ext]',
+        include: path.resolve(__dirname, '../app/assets/fonts'),
       },
       {
         test: /\.pdf$/,
