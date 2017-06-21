@@ -1,6 +1,6 @@
 {
   "name": "page-barba",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "My organization for web developpement with Barba.js.",
   "main": "app/main.js",
   "repository": {

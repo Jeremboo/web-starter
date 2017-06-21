@@ -1,4 +1,8 @@
-
+/**
+*
+* app/core/barbaExtend.js
+* My modification of barba.js
+**/
 
 import { BaseTransition, Pjax, HistoryManager } from 'barba.js';
 

@@ -1,6 +1,7 @@
 /**
 *
 * app/core/utils.js
-* Util generic functions.
+* Make all util and generic functions here.
 *
+* export const sqr = (a) => a * a;
 **/

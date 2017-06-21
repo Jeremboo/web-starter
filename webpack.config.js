@@ -26,6 +26,7 @@ const removeInstanceFromArray = (arr, instance) => {
 // GET PUG FILES
 const pugViews = fs.readdirSync(path.resolve(__dirname, './app/views'));
 removeInstanceFromArray(pugViews, '_layout.pug');
+removeInstanceFromArray(pugViews, 'index');
 
 // ##############
 // WEBPACK BASE
@@ -102,6 +103,12 @@ var config = {
         VIEWS: JSON.stringify(pugViews),
       },
     }),
+    // Hard coded to always have a index.html file
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, './app/views/index/index.pug'),
+      // favicon: './app/assets/imgs/favicon.png',
+    })
   ],
 };
 
@@ -109,7 +116,7 @@ var config = {
 // ADD HtmlWebpackPlugin plugins for each pugViews
 for (let i = 0; i < pugViews.length; i++) {
   config.plugins.push(new HtmlWebpackPlugin({
-    filename: pugViews[i].split('.')[0] + '.html',
+    filename: pugViews[i] + '/index.html',
     template: path.resolve(__dirname, './app/views/' + pugViews[i] + '/index.pug'),
     // favicon: './app/assets/imgs/favicon.png',
   }));

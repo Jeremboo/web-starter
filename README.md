@@ -1,4 +1,4 @@
-# Barba@1.0.0 - 19/06/2017
+# Barba@1.1.0 - 21/06/2017
 
 An architecture to manage a web project with Barba.js. It permit to have different
 html pages with transition between them. It is better for the referencement.
