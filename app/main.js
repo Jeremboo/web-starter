@@ -1,18 +1,7 @@
-/**
-*
-* app/main.js
-* Main
-*
-**/
+import engine from 'core/engine';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import Root from 'core/router';
-
-import 'style/base.styl';
-
-// Enable react dev-tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
-window.React = React;
-
-ReactDOM.render(<Root />, app);
+// TODO show loader
+engine.init()
+.then(() => {
+  // TODO hide loader
+});

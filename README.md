@@ -1,4 +1,4 @@
-# My web app starter kit with Webpack, React and Three.js
+# My web app starter kit with Webpack and Three.js
 
 Just a architecture to manage a web project with :
 
@@ -7,7 +7,7 @@ Just a architecture to manage a web project with :
 - [Stylus]()
 - [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 
-- [React]()
+- [Threejs]()
 
 ## Commands :
 

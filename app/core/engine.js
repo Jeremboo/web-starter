@@ -1,7 +1,7 @@
 import {
-  PointLight, AmbientLight,
-  AxisHelper, GridHelper, PointLightHelper, Vector3,
-  PerspectiveCamera, CameraHelper
+  AmbientLight,
+  AxisHelper, GridHelper, PointLightHelper,
+  PerspectiveCamera, CameraHelper,
 } from 'three';
 
 import OrbitControls from 'vendors/OrbitControls';
@@ -11,7 +11,7 @@ import gui from 'core/gui';
 import loop from 'core/loop';
 import props from 'core/props';
 
-import Exemple from 'objects/Exemple';
+import Exemple from 'components/Exemple';
 
 class Engine {
   constructor() {

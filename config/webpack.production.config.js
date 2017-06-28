@@ -10,12 +10,10 @@ var basename = '/';
 
 module.exports = {
   entry:{
-
     app: [
       'babel-polyfill',
       path.resolve(__dirname, '../app/main.js'),
     ],
-    vendors: ['react', 'react-dom', 'react-router', 'history'],
   },
   resolve: {
     alias: {},
@@ -23,13 +21,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../public'),
     publicPath: basename,
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
-  externals: {
-    'react/addons': true,
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
-  },
+  externals: {},
   module: {
     rules: [
       {
@@ -39,7 +33,7 @@ module.exports = {
         query: {
           plugins: [
             ['module-resolver', {
-              root: [path.resolve(__dirname, './app/')],
+              root: [path.resolve(__dirname, '../app/')],
             }],
           ],
         },
@@ -56,8 +50,8 @@ module.exports = {
             loader: 'stylus-loader',
             options: {
               import: [
-                path.resolve(__dirname, './app/style/variables.styl'),
-                path.resolve(__dirname, './app/style/mixins.styl'),
+                path.resolve(__dirname, '../app/style/variables.styl'),
+                path.resolve(__dirname, '../app/style/mixins.styl'),
               ],
               sourceMap: true,
             },
@@ -72,12 +66,12 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: 'file-loader?name=imgs/[hash].[ext]',
-        include: path.resolve(__dirname, './app/assets/imgs'),
+        include: path.resolve(__dirname, '../app/assets/imgs'),
       },
       {
         test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: 'file-loader?name=fonts/[hash].[ext]',
-        include: path.resolve(__dirname, './app/assets/fonts'),
+        include: path.resolve(__dirname, '../app/assets/fonts'),
       },
       {
         test: /\.pdf$/,
@@ -108,8 +102,8 @@ module.exports = {
       allChunks: true,
     }),
     new HtmlWebpackPlugin({
-      template: './app/assets/index.html',
-      favicon: './app/assets/imgs/favicon.ico',
+      template: '../app/assets/index.html',
+      favicon: '../app/assets/imgs/favicon.ico',
     })
   ]
 };
