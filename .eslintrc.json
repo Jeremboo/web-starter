@@ -8,6 +8,11 @@
     "it": true
   },
   "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "generators": true,
+    "restParams": true,
+    "spread": true
+  },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }

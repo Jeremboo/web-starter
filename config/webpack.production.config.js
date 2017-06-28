@@ -23,7 +23,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../public'),
     publicPath: basename,
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
   externals: {
     'react/addons': true,
@@ -39,7 +39,7 @@ module.exports = {
         query: {
           plugins: [
             ['module-resolver', {
-              root: [path.resolve(__dirname, './app/')],
+              root: [path.resolve(__dirname, '../app/')],
             }],
           ],
         },
@@ -56,8 +56,8 @@ module.exports = {
             loader: 'stylus-loader',
             options: {
               import: [
-                path.resolve(__dirname, './app/style/variables.styl'),
-                path.resolve(__dirname, './app/style/mixins.styl'),
+                path.resolve(__dirname, '../app/style/variables.styl'),
+                path.resolve(__dirname, '../app/style/mixins.styl'),
               ],
               sourceMap: true,
             },
@@ -71,31 +71,35 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        use: 'file-loader?name=imgs/[hash].[ext]',
-        include: path.resolve(__dirname, './app/assets/imgs'),
+        use: 'file-loader?name=imgs/[name].[ext]',
+        include: path.resolve(__dirname, '../app/assets/imgs'),
       },
       {
         test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: 'file-loader?name=fonts/[hash].[ext]',
-        include: path.resolve(__dirname, './app/assets/fonts'),
+        use: 'file-loader?name=fonts/[name].[ext]',
+        include: path.resolve(__dirname, '../app/assets/fonts'),
       },
       {
         test: /\.pdf$/,
-        loader: 'file?name=[hash].[ext]',
+        loader: 'file?name=[name].[ext]',
         include: path.resolve(__dirname, '../app/assets')
       },
-      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'raw' },
-      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'glslify' }
+      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'raw-loader' },
+      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'glslify-loader' }
     ],
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendors',
+      filename: 'vendors.js'
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: true, drop_console: true, },
       comments: false,
-      sourceMap: true,
-      mangle: true,
     }),
     new webpack.DefinePlugin({
       'process.env':{
@@ -103,13 +107,14 @@ module.exports = {
         'BASENAME': JSON.stringify(basename)
       },
     }),
-    new ExtractTextPlugin('styles.css', {
+    new ExtractTextPlugin({
+      filename: 'style.css',
       disable: false,
       allChunks: true,
     }),
     new HtmlWebpackPlugin({
       template: './app/assets/index.html',
-      favicon: './app/assets/imgs/favicon.ico',
+      // favicon: './app/assets/imgs/favicon.ico',
     })
   ]
 };

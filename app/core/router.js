@@ -1,11 +1,11 @@
 import React from 'react';
-import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
-import { createHistory } from 'history';
+import { Router, Route } from 'react-router';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 import Layout from 'views/Layout';
 import Home from 'views/Home';
 
-const history = useRouterHistory(createHistory)({
+const history = createBrowserHistory({
   basename: process.env.BASENAME.length > 0 ? process.env.BASENAME : window.location.pathname,
 });
 
@@ -15,13 +15,13 @@ export const openPath = (path) => {
   }
 };
 
-export default function Root() {
-  return (
-    <Router history={history}>
-      <Route path="/" component={Layout} >
-          <IndexRoute component={Home} />
-          <Route path="/home" component={Home} />
-      </Route>
-    </Router>
-  );
-}
+const Root = () => (
+  <Router history={history}>
+    <Layout>
+      <Route path="/" component={Home} />
+      <Route path="/home" component={Home} />
+    </Layout>
+  </Router>
+);
+
+export default Root;

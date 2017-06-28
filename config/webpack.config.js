@@ -21,14 +21,14 @@ var config = {
     },
     output: {
         path: path.resolve(__dirname, '../public'),
-        filename: 'bundle.js',
+        filename: '[name].js',
         publicPath: myLocalIp,
         devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
     externals: {
       'react/addons': true,
       'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': true
+      'react/lib/ReactContext': true,
     },
     devtool: "eval-source-map",
     devServer: {
@@ -84,17 +84,17 @@ var config = {
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,
-          use: 'file-loader?name=imgs/[hash].[ext]',
+          use: 'file-loader?name=imgs/[name].[ext]',
           include: path.resolve(__dirname, '../app/assets/imgs'),
         },
         {
           test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: 'file-loader?name=fonts/[hash].[ext]',
+          use: 'file-loader?name=fonts/[name].[ext]',
           include: path.resolve(__dirname, '../app/assets/fonts'),
         },
         {
           test: /\.pdf$/,
-          loader: 'file?name=[hash].[ext]',
+          loader: 'file?name=[name].[ext]',
           include: path.resolve(__dirname, '../app/assets')
         },
         { test: /\.(glsl|frag|vert)$/, exclude: node_modules, use: 'raw-loader' },
