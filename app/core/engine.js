@@ -1,6 +1,5 @@
 import {
-  AmbientLight,
-  AxisHelper, GridHelper, PointLightHelper,
+  AxisHelper, GridHelper,
   PerspectiveCamera, CameraHelper,
 } from 'three';
 
@@ -11,24 +10,16 @@ import gui from 'core/gui';
 import loop from 'core/loop';
 import props from 'core/props';
 
-import Exemple from 'components/Exemple';
-
 class Engine {
   constructor() {
     this.webgl = false;
     this.helperEnabled = false;
     this.onResize = false; // Callback of onResize listener
 
-    // objects
-    this.lights = [];
-    this._exemple = false;
-
     this.init = this.init.bind(this);
-    this.initWebgl = this.initWebgl.bind(this);
-    this.initObjects = this.initObjects.bind(this);
-    this.loadAssets = this.loadAssets.bind(this);
     this._resize = this._resize.bind(this);
 
+    this.onToggleHelper = f => f;
     this.toggleHelper = this.toggleHelper.bind(this);
 
     // TOGGLE HELPER
@@ -48,14 +39,7 @@ class Engine {
    ****************
    */
   init() {
-    return this.initWebgl()
-      .then(this.loadAssets)
-      .then(this.initObjects)
-    ;
-  }
-
-  initWebgl() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       if (!props.debug.disableWebgl || process.env.NODE_ENV === 'production') {
         try {
           // Start webgl
@@ -71,46 +55,14 @@ class Engine {
           // Add on resize for webgl
           window.addEventListener('resize', this._resize);
           window.addEventListener('orientationchange', this._resize);
-        } catch (e) {
-          // HACK fake webgl
-          this.webgl = false;
-        }
+
+          if (!props.debug.disableWebgl && props.debug.webglHelper && process.env.NODE_ENV !== 'production') {
+            this.toggleHelper();
+          }
+
+          resolve();
+        } catch (e) { reject(e); }
       }
-
-      resolve();
-    });
-  }
-
-  loadAssets() {
-    return new Promise((resolve, reject) => {
-
-        resolve();
-    });
-  }
-
-  initObjects() {
-    return new Promise((resolve) => {
-      if (this.webgl) {
-        // TODO add main object add scene
-        // TODO scene.js
-
-        // LIGHT
-        const ambiantLight = new AmbientLight(0xffffff, 0.5);
-        this.webgl.add(ambiantLight);
-
-        // OBJECTS
-        this._exemple = new Exemple();
-        this.webgl.add(this._exemple);
-
-      } else {
-        // If no GL
-      }
-
-      if (!props.debug.disableWebgl && props.debug.webglHelper && process.env.NODE_ENV !== 'production') {
-        this.toggleHelper();
-      }
-
-      resolve();
     });
   }
 
@@ -121,23 +73,12 @@ class Engine {
    */
   toggleHelper() {
     this.helperEnabled = !this.helperEnabled;
+    this.onToggleHelper(this.helperEnabled);
     if (this.helperEnabled) {
       // TODO helper into an other file
-      if (!gui.enabled) {
-        gui.initGui();
-
-        // Add objects into helper
-
-        // Lights
-        this.lightsHelper = [];
-        for (let i = 0; i < this.lights.length; i++) {
-          this.lightsHelper.push(new PointLightHelper(this.lights[i], 10));
-          gui.addLight(this.lights[i]);
-        }
-      }
+      if (!gui.enabled) gui.initGui();
       if (!this.gridHelper) this.gridHelper = new GridHelper(200, 200);
       if (!this.axisHelper) this.axisHelper = new AxisHelper(300);
-
       if (!this.debugCamera) {
         this.debugCamera = new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
         this.debugCamera.position.z = 150;
@@ -149,7 +90,6 @@ class Engine {
       gui.toggleHide();
 
       document.querySelector('.dg.ac').style.zIndex = 10;
-      this.webgl.dom.style.zIndex = 9;
       this.webgl._renderer.setClearColor(0xaaaaaa, 1);
 
       this.webgl.add(this.gridHelper);
@@ -158,11 +98,9 @@ class Engine {
       this.webgl.add(this.camerahelper);
 
       this.webgl.currentCamera = this.debugCamera;
-
     } else {
       gui.toggleHide();
 
-      this.webgl.dom.style.zIndex = -1;
       this.webgl._renderer.setClearColor(0xfefefe, 1);
 
       this.webgl.remove(this.gridHelper);
@@ -171,9 +109,6 @@ class Engine {
       this.webgl.remove(this.camerahelper);
 
       this.webgl.currentCamera = this.webgl.camera;
-      for (let i = 0; i < this.lightsHelper.length; i++) {
-        this.webgl.remove(this.lightsHelper[i]);
-      }
     }
   }
 

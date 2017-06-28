@@ -1,4 +1,7 @@
-import { Object3D, Vector4, TetrahedronGeometry, MeshBasicMaterial, ShaderMaterial, Mesh } from 'three'
+import {
+  Object3D, Vector4, TetrahedronGeometry, MeshBasicMaterial,
+  ShaderMaterial, Mesh
+} from 'three';
 
 import props from 'core/props';
 
