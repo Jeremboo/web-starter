@@ -16,7 +16,7 @@ export default class Webgl {
     this.scene = new Scene();
 
     this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
-    this.camera.position.z = 100;
+    this.camera.position.set(0, 0, 50);
     this.currentCamera = this.camera;
 
     this._renderer = new WebGLRenderer({
@@ -71,7 +71,7 @@ export default class Webgl {
   }
 
   update() {
-    if (props.postProcess.enabled) {
+    if (props.debug.postProcess.enabled) {
       this._composer.reset();
       this._composer.renderer.clear();
       this._composer.render(this.scene, this.camera);
@@ -94,7 +94,7 @@ export default class Webgl {
 
     this._renderer.setSize(w, h);
 
-    if (props.postProcess.enabled) {
+    if (props.debug.postProcess.enabled) {
      this._composer.setSize(w, h);
     }
   }

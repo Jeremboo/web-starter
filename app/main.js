@@ -1,16 +1,22 @@
-import engine from 'core/engine';
-
 import {
   AmbientLight,
 } from 'three';
+
+import engine from 'core/engine';
+import gui from 'core/gui';
+import { loadAssets } from 'core/assetLoader';
+import props from 'core/props';
 
 import Exemple from 'objects/Exemple';
 
 
 // TODO show loader
-engine.init().then(() => {
 
-  // TODO load Assets
+engine.init().then(() => loadAssets).then(() => {
+  /** ****************
+  * INIT OBJECT
+  ******************/
+
 
   // TODO Init objects
  // LIGHT
@@ -23,6 +29,12 @@ engine.init().then(() => {
 
 
   // TODO Helpers
+  gui.add(props, 'rotationSpeed', 0, 1);
+
+  // PostProcess
+  // this.postProcessFolder = this.gui.addFolder('PostProcess');
+  // this.postProcessFolder.add(props.postProcess, 'enabled');
+
   engine.onToggleHelper((enabled) => {
     if (enabled) {
       // const lightHelper = new PointLightHelper(this.lights[i], 10);
@@ -33,6 +45,10 @@ engine.init().then(() => {
     }
   });
 
+  /** ****************
+  * START
+  ******************/
+  engine.start();
   // TODO hide loader
 }).catch((e) => {
   // TODO show error webgl not supported

@@ -1,7 +1,6 @@
 const props = {
-  postProcess: {
-    enabled: false,
-  },
+  rotationSpeed: 0.01,
+
   debug: {
     postProcess: {
       enabled: false,
@@ -9,7 +8,6 @@ const props = {
     webglHelper: false,
     disableWebgl: false,
   },
-  rotationSpeed: 0.01,
 };
 
 export default props;
