@@ -1,7 +1,7 @@
 {
-  "name": "web-starter",
+  "name": "npm-server",
   "version": "1.0.0",
-  "description": "My organization for node.js development only with npm scripts.",
+  "description": "My organization for node.js server development only with npm scripts.",
   "main": "app/main.js",
   "repository": {
     "type": "git",
@@ -15,19 +15,22 @@
   },
   "keywords": [
     "starter",
-    "kit",
     "babel",
-    "html5",
-    "npm"
+    "npm",
+    "server"
   ],
   "author": "Jérémie Boulay <jeremi.boulay@gmail.com>",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-preset-es2015": "^6.3.13",
-    "eslint": "^2.5.3",
-    "eslint-config-airbnb": "^6.2.0",
-    "nodemon": "^1.9.1"
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.14.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "nodemon": "^1.11.0",
+    "uuid": "^3.1.0"
   }
 }

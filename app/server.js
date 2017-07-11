@@ -9,13 +9,15 @@ import http from 'http';
 
 import Hello from './components/Hello';
 
+import props from './core/props';
+
 const h = new Hello();
 h.sayHello();
 
-
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello World\n');
-}).listen(1337, '127.0.0.1');
+  res.end(h.sayHello());
+  console.log('An user is connected to the localhost !');
+}).listen(props.PORT, '127.0.0.1');
 
-console.log('Server running at http://127.0.0.1:1337/');
+console.log(`Server running at http://127.0.0.1:${props.PORT}/`);

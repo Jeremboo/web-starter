@@ -1,6 +1,6 @@
-# My web app starter kit only with NPM script
+# npm-server@1.0.0 - 11/07/2017
 
-Just a architecture to manage a web project with :
+My web app starter kit only with NPM script with :
 
 - [Npm scripts](https://docs.npmjs.com/misc/scripts)
 - [Babel]()
