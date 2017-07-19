@@ -1,42 +1,35 @@
-# My web app starter kit with Webpack and React
+# Webpack-react@1.0.1 - 13/06/2017
 
-Just a architecture to manage a web project with :
-
-- [Webpack]()
-- [Babel]()
-- [Stylus]()
-- [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
-
-- [React]()
-
-- [Mocha]()
-- [Enzyme]()
+Just a architecture to manage a web project in React
 
 ## Commands :
 
-## Commands :
+- `npm start` for starting the development with auto reloading.
 
-- `npm start` to starting the development with auto reloading.
+- `npm run build` for having a `public/` production directory.
 
-- `npm run build` to having a `public/` production directory.
+## Configs :
 
-- `npm run test:watch` to start your unit tests.
+  Update the `basename` variable into the `config/webpack.production.config.js`.
 
 ## Details :
 
-- **Webpack with :**
-  - `dev` and `prod` environment
+- [React 15.5.4]()
+
+- [Webpack 2.6.1]()
+  - `dev`and `prod` environment
   - Auto reloading
   - ...
 
-- **Babel to using ES6.**
+- [Babel-cli 6.24.1]()
 
-- **Style Guide :**
+- [Stylus 0.54.5]()
 
-Follow the [AirBnb Javascript Style Guide](https://github.com/airbnb/javascript) with her
-Eslint. You can also follow her
-[AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+- [EsLint 3.19.0](http://eslint.org/)
+  - Following the [AirBnb EsLint 15.0.1](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) You can also follow her
+  [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+
 
 ## TODO
 
-- **Webpack Extract text plugging**
+- More unit test config
