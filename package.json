@@ -1,6 +1,6 @@
 {
   "name": "webpack-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "My organization for web developpement with React and Webpack.",
   "main": "app/main.js",
   "repository": {
@@ -65,7 +65,7 @@
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.4.3"
   }
 }
