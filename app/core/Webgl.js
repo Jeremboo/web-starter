@@ -1,6 +1,6 @@
 import { Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap } from 'three';
 
-// import OrbitControls from 'vendors/OrbitControls';
+import OrbitControls from 'vendors/OrbitControls';
 
 // import { Composer } from '@superguigui/wagner';
 // import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
@@ -14,6 +14,7 @@ export default class Webgl {
     this.width = w;
     this.height = h;
     this.scene = new Scene();
+     // this.scene.fog = new Fog(0xFEFEFE, 0.5, 20);
 
     this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
     this.camera.position.set(0, 0, 50);
@@ -24,13 +25,14 @@ export default class Webgl {
     });
     this._renderer.setPixelRatio(window.devicePixelRatio || 1);
     this._renderer.setClearColor(0xFEFEFE, 1);
-    this._renderer.shadowMap.enabled = true;
-    this._renderer.shadowMap.type = PCFSoftShadowMap;
+    // this._renderer.shadowMap.enabled = true;
+    // this._renderer.shadowMap.type = PCFSoftShadowMap;
 
     this.dom = this._renderer.domElement;
 
-    // this.controls = new OrbitControls(this.camera, this.dom);
-    // this.controls.enabled = false;
+    if (props.debug.orbitControlsMainCamera && process.env.NODE_ENV !== 'production') {
+      this.controls = new OrbitControls(this.camera, this.dom);
+    }
 
     this._composer = false;
     this._passes = [];
@@ -48,7 +50,7 @@ export default class Webgl {
     // TODO add postprocess.js add() / remove()
     // this._composer = new Composer(this._renderer);
 
-    // if (!props.postProcess.enabled) return;
+    // if (!props.debug.postProcess.enabled) return;
     // this._passes.push(new VignettePass({ reduction: 0.5 }));
     // this._passes.push(new FXAAPass({}));
   }

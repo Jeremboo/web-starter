@@ -31,6 +31,7 @@ var config = {
       // compress: true,
       contentBase: path.resolve(__dirname, '../app'),
       headers: { 'Access-Control-Allow-Origin': '*' },
+      disableHostCheck: true,
       historyApiFallback: true,
       host: '0.0.0.0',
       hot: true,
@@ -43,12 +44,12 @@ var config = {
       rules: [
         {
           test: /\.jsx?$/,
-          exclude: node_modules,
+          include: path.resolve(__dirname, '../app'),
           loader: 'babel-loader',
           query: {
             plugins: [
               ['module-resolver', {
-                root: [path.resolve(__dirname, '../app/')],
+                root: [path.resolve(__dirname, '../app')],
               }],
             ],
           },
@@ -76,7 +77,7 @@ var config = {
         {
           test: /\.json$/,
           loader: 'json',
-          include: path.resolve(__dirname, '../app/assets/')
+          include: path.resolve(__dirname, '../app/assets')
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,

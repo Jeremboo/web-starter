@@ -1,10 +1,11 @@
 const props = {
-  rotationSpeed: 0.01,
+  ROTATION_SPEED: 0.05,
 
   debug: {
     postProcess: {
       enabled: false,
     },
+    orbitControlsMainCamera: true,
     webglHelper: false,
     disableWebgl: false,
   },

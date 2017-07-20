@@ -1,4 +1,3 @@
-
 import { GUI } from 'dat-gui';
 
 import props from 'core/props';
@@ -9,8 +8,9 @@ class Gui extends GUI {
     this.enabled = false;
     this.folders = [];
 
+    GUI.toggleHide();
+
     this.addMesh = this.addMesh.bind(this);
-    this.initGui = this.initGui.bind(this);
     this.toggleHide = this.toggleHide.bind(this);
   }
 

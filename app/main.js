@@ -4,11 +4,12 @@ import {
 
 import engine from 'core/engine';
 import gui from 'core/gui';
-import { loadAssets } from 'core/assetLoader';
 import props from 'core/props';
+import { loadAssets } from 'core/assets';
 
 import Exemple from 'objects/Exemple';
 
+import 'style/base.styl';
 
 // TODO show loader
 
@@ -17,8 +18,6 @@ engine.init().then(() => loadAssets).then(() => {
   * INIT OBJECT
   ******************/
 
-
-  // TODO Init objects
  // LIGHT
   const ambiantLight = new AmbientLight(0xffffff, 0.5);
   engine.webgl.add(ambiantLight);
@@ -27,13 +26,10 @@ engine.init().then(() => loadAssets).then(() => {
   const exemple = new Exemple();
   engine.webgl.add(exemple);
 
-
-  // TODO Helpers
-  gui.add(props, 'rotationSpeed', 0, 1);
-
-  // PostProcess
-  // this.postProcessFolder = this.gui.addFolder('PostProcess');
-  // this.postProcessFolder.add(props.postProcess, 'enabled');
+  /** ****************
+  * INIT HELPERS
+  ******************/
+  gui.add(props, 'ROTATION_SPEED', 0, 1);
 
   engine.onToggleHelper((enabled) => {
     if (enabled) {
@@ -50,7 +46,8 @@ engine.init().then(() => loadAssets).then(() => {
   ******************/
   engine.start();
   // TODO hide loader
+
 }).catch((e) => {
-  // TODO show error webgl not supported
-  console.log(e);
+  // TODO shows error if the webgl is not supported
+  console.error(e);
 });

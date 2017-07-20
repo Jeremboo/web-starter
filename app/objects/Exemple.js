@@ -34,7 +34,7 @@ export default class Exemple extends Object3D {
   }
 
   update() {
-    this.rotation.x += props.rotationSpeed;
-    this.rotation.y += props.rotationSpeed;
+    this.rotation.x += props.ROTATION_SPEED;
+    this.rotation.y += props.ROTATION_SPEED;
   }
 }

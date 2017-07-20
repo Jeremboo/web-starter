@@ -1,4 +1,4 @@
-# My web app starter kit with Webpack and Three.js
+# Webpack-threejs@1.1.0 - 20/07/2017
 
 Just a architecture to manage a web project with :
 
@@ -11,9 +11,9 @@ Just a architecture to manage a web project with :
 
 ## Commands :
 
-- `npm start` for starting the development with auto reloading.
+- `npm start` to start the development with auto reloading.
 
-- `npm run build` for having a `public/` production directory.
+- `npm run build` to have a `public/` production directory.
 
 ## Configs :
 
