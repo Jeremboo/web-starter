@@ -1,6 +1,6 @@
-# Webpack-react@1.0.2 - 19/07/2017
+# Webpack-react-mobx@1.0.2 - 24/07/2017
 
-Just a architecture to manage a web project in React
+Just a architecture to manage a web project in React and Mobx
 
 ## Commands :
 
@@ -16,7 +16,7 @@ Just a architecture to manage a web project in React
 
 - [React 15.5.4]()
 
-- [Webpack 2.6.1]()
+- [Webpack 3.0.0]()
   - `dev`and `prod` environment
   - Auto reloading
   - ...
@@ -28,8 +28,3 @@ Just a architecture to manage a web project in React
 - [EsLint 3.19.0](http://eslint.org/)
   - Following the [AirBnb EsLint 15.0.1](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) You can also follow her
   [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
-
-
-## TODO
-
-- More unit test config

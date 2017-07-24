@@ -18,7 +18,7 @@ function Title() {
     name: '...',
     loaded: false,
     all: computed(() => `${this.title} ${this.background}`),
-    updateName: action(() => {
+    updateName: action('updateName', () => {
       this.loaded = false;
       setTimeout(() => {
         this.name = 'Hello World';

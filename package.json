@@ -1,7 +1,7 @@
 {
-  "name": "webpack-react",
+  "name": "webpack-react-mobx",
   "version": "1.0.2",
-  "description": "My organization for web developpement with React and Webpack.",
+  "description": "My organization for web developpement with React, Mobx and Webpack.",
   "main": "app/main.js",
   "repository": {
     "type": "git",
