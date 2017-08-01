@@ -1,6 +1,7 @@
-# My web app starter kit only with NPM script
+# npm@1.0.0 - 01/08/2017
 
-Just a architecture to manage a web project with :
+
+My web app starter kit only with NPM script with :
 
 - [Npm scripts](https://docs.npmjs.com/misc/scripts)
 - [Budo](https://github.com/mattdesl/budo)
@@ -17,17 +18,17 @@ Just a architecture to manage a web project with :
 
 ## Commands :
 
-- `npm install` for installing dependencies.
+- `npm install` to install dependencies.
 
-- `npm start` for starting the development with auto reloading.
+- `npm start` to start the development with auto reloading.
 
-- `npm run build` for having a `public/` production directory.
+- `npm run build` to have a `public/` production directory.
 
 ## Details :
 
-- **Babel for using ES6.**
+- **Babel to use ES6.**
 
-- **Budo for live reloading.**
+- **Budo to live reloading.**
 
 - **Style Guide :**
 
