@@ -17,6 +17,7 @@ class Gui extends GUI {
   }
 
   toggleHide() {
+    // document.querySelector('.dg.ac').style.zIndex = 10;
     this.enabled = !this.enabled;
     GUI.toggleHide();
   }

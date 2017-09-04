@@ -1,9 +1,9 @@
 const props = {
-  rotationSpeed: 0.01,
+  ROTATION_SPEED: 0.01,
 
   debug: {
     postProcess: {
-      enabled: false,
+      disabled: false,
     },
     webglHelper: false,
     disableWebgl: false,

@@ -1,17 +1,20 @@
-import { Object3D, Vector4, TetrahedronGeometry, MeshBasicMaterial, ShaderMaterial, Mesh } from 'three'
+import { Object3D, Vector4, TetrahedronGeometry, ShaderMaterial, Mesh } from 'three'
 
 import props from 'core/props';
+import gui from 'core/gui';
 
 import vertexShader from 'shaders/example.v.glsl';
 import fragmentShader from 'shaders/example.f.glsl';
+
 
 
 export default class Exemple extends Object3D {
   constructor() {
     super();
 
+    gui.add(props, 'ROTATION_SPEED');
+
     const geometry = new TetrahedronGeometry(10, 0);
-    // const material = new MeshBasicMaterial({ color: 0xffffff });
     const material = new ShaderMaterial({
       uniforms: {
         color: {
@@ -20,7 +23,7 @@ export default class Exemple extends Object3D {
       },
       vertexShader,
       fragmentShader,
-      wireframe: true,
+      // wireframe: true,
     });
 
     this.mesh = new Mesh(geometry, material);
@@ -31,7 +34,7 @@ export default class Exemple extends Object3D {
   }
 
   update() {
-    this.rotation.x += props.rotationSpeed;
-    this.rotation.y += props.rotationSpeed;
+    this.rotation.x += props.ROTATION_SPEED;
+    this.rotation.y += props.ROTATION_SPEED;
   }
 }
