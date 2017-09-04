@@ -36,6 +36,7 @@ var config = {
       contentBase: path.resolve(__dirname, '../app'),
       headers: { 'Access-Control-Allow-Origin': '*' },
       historyApiFallback: true,
+      disableHostCheck: true,
       host: '0.0.0.0',
       hot: true,
       inline: true,
@@ -49,13 +50,6 @@ var config = {
           test: /\.jsx?$/,
           exclude: node_modules,
           loader: 'babel-loader',
-          query: {
-            plugins: [
-              ['module-resolver', {
-                root: [path.resolve(__dirname, '../app/')],
-              }],
-            ],
-          },
         },
         {
           test: /\.(styl|css)$/,
@@ -97,8 +91,8 @@ var config = {
           loader: 'file?name=[name].[ext]',
           include: path.resolve(__dirname, '../app/assets')
         },
-        { test: /\.(glsl|frag|vert)$/, exclude: node_modules, use: 'raw-loader' },
-        { test: /\.(glsl|frag|vert)$/, exclude: node_modules, use: 'glslify-loader' }
+        { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'raw-loader' },
+        { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'glslify-loader' }
       ],
     },
     plugins: [
@@ -111,15 +105,15 @@ var config = {
         },
       }),
       new webpack.DefinePlugin({
-      'process.env':{
-        'NODE_ENV': JSON.stringify('development'),
-        'BASENAME': JSON.stringify(basename),
-      },
-    }),
+        'process.env':{
+          'NODE_ENV': JSON.stringify('development'),
+          'BASENAME': JSON.stringify(basename),
+        },
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../app/assets/index.html'),
         favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
-      })
+      }),
     ]
 };
 

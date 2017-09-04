@@ -1,15 +1,14 @@
 const props = {
-  postProcess: {
-    enabled: false,
-  },
+  rotationSpeed: 0.01,
+
   debug: {
     postProcess: {
       enabled: false,
     },
     webglHelper: false,
     disableWebgl: false,
+    orbitControlsMainCamera: false,
   },
-  rotationSpeed: 0.01,
 };
 
 export default props;

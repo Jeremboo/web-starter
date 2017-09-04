@@ -29,6 +29,7 @@ class Engine {
     this.loadAssets = this.loadAssets.bind(this);
     this._resize = this._resize.bind(this);
 
+    this.onToggleHelper = f => f;
     this.toggleHelper = this.toggleHelper.bind(this);
 
     // TOGGLE HELPER
@@ -124,10 +125,7 @@ class Engine {
     if (this.helperEnabled) {
       // TODO helper into an other file
       if (!gui.enabled) {
-        gui.initGui();
-
         // Add objects into helper
-
         // Lights
         this.lightsHelper = [];
         for (let i = 0; i < this.lights.length; i++) {
@@ -146,8 +144,6 @@ class Engine {
 
       if (!this.cameraHelper) this.camerahelper = new CameraHelper(this.webgl.camera);
 
-      gui.toggleHide();
-
       document.querySelector('.dg.ac').style.zIndex = 10;
       this.webgl.dom.style.zIndex = 9;
       this.webgl._renderer.setClearColor(0xaaaaaa, 1);
@@ -158,10 +154,7 @@ class Engine {
       this.webgl.add(this.camerahelper);
 
       this.webgl.currentCamera = this.debugCamera;
-
     } else {
-      gui.toggleHide();
-
       this.webgl.dom.style.zIndex = -1;
       this.webgl._renderer.setClearColor(0xfefefe, 1);
 
@@ -175,6 +168,9 @@ class Engine {
         this.webgl.remove(this.lightsHelper[i]);
       }
     }
+
+    this.onToggleHelper(this.helperEnabled);
+    gui.toggleHide();
   }
 
   /**

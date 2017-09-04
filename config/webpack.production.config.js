@@ -36,13 +36,6 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: node_modules,
         loader: 'babel-loader',
-        query: {
-          plugins: [
-            ['module-resolver', {
-              root: [path.resolve(__dirname, '../app/')],
-            }],
-          ],
-        },
       },
       {
         test: /\.(styl|css)$/,
@@ -90,8 +83,12 @@ module.exports = {
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
+      debug: true,
+      options: {
+        stylus: {
+          use: [poststylus(['autoprefixer'])],
+        },
+      },
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
@@ -113,8 +110,8 @@ module.exports = {
       allChunks: true,
     }),
     new HtmlWebpackPlugin({
-      template: './app/assets/index.html',
-      // favicon: './app/assets/imgs/favicon.ico',
-    })
+      template: path.resolve(__dirname, '../app/assets/index.html'),
+      favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
+    }),
   ]
 };
