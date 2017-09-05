@@ -23,12 +23,12 @@ class Gui extends GUI {
     GUI.toggleHide();
 
     // fbo gui
-    this.fboGui = document.getElementById('fboh-fbos-list');
-    if (this.enabled) {
-      this.fboGui.style.display = 'none';
-    } else {
-      this.fboGui.style.display = 'block';
-    }
+    // this.fboGui = document.getElementById('fboh-fbos-list');
+    // if (this.enabled) {
+    //   this.fboGui.style.display = 'none';
+    // } else {
+    //   this.fboGui.style.display = 'block';
+    // }
   }
 
   /**

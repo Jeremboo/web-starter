@@ -25,11 +25,12 @@
   "dependencies": {
     "dat-gui": "^0.5.0",
     "glslify": "^6.0.1",
-    "three": "^0.86.0"
+    "postprocessing": "^2.3.1",
+    "three": "^0.87.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
-    "babel": "^6.5.2",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
@@ -44,7 +45,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "glslify-loader": "^1.0.2",
     "html-webpack-plugin": "^2.28.0",
@@ -58,6 +59,6 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.4.3"
+    "webpack-dev-server": "^2.5.0"
   }
 }

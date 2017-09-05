@@ -23,7 +23,7 @@ export default class Exemple extends Object3D {
       },
       vertexShader,
       fragmentShader,
-      wireframe: true,
+      // wireframe: true,
     });
 
     this.mesh = new Mesh(geometry, material);

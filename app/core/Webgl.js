@@ -1,20 +1,25 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap } from 'three';
+import {
+  Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap,
+  Clock,
+} from 'three';
+import {
+  EffectComposer, RenderPass, BloomPass,
+} from 'postprocessing';
 
 import OrbitControls from 'vendors/OrbitControls';
 
-// import { Composer } from '@superguigui/wagner';
-// import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
-// import VignettePass from '@superguigui/wagner/src/passes/vignette/VignettePass';
-
 import props from 'core/props';
+import gui from 'core/gui';
 import loop from 'core/loop';
+
+const clock = new Clock();
 
 export default class Webgl {
   constructor(w, h) {
     this.width = w;
     this.height = h;
     this.scene = new Scene();
-     // this.scene.fog = new Fog(0xFEFEFE, 0.5, 20);
+    // this.scene.fog = new Fog(0xFEFEFE, 0.5, 20);
 
     this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
     this.camera.position.set(0, 0, 50);
@@ -23,7 +28,7 @@ export default class Webgl {
     this._renderer = new WebGLRenderer({
       antialias: true,
     });
-    this._renderer.setPixelRatio(window.devicePixelRatio || 1);
+    // this._renderer.setPixelRatio(window.devicePixelRatio || 1);
     this._renderer.setClearColor(0xFEFEFE, 1);
     // this._renderer.shadowMap.enabled = true;
     // this._renderer.shadowMap.type = PCFSoftShadowMap;
@@ -31,12 +36,14 @@ export default class Webgl {
     this.dom = this._renderer.domElement;
 
     if (props.debug.orbitControlsMainCamera && process.env.NODE_ENV !== 'production') {
-      this.controls = new OrbitControls(this.camera, this.dom);
+      this.controls = new OrbitControls(this.currentCamera, document.body);
     }
 
     this._composer = false;
-    this._passes = [];
-    this.initPostprocessing();
+    this._passes = {};
+    if (!props.debug.postProcess.disabled || process.env.NODE_ENV === 'production') {
+      this.initPostprocessing();
+    }
 
     this.initPostprocessing = this.initPostprocessing.bind(this);
     this.update = this.update.bind(this);
@@ -47,12 +54,32 @@ export default class Webgl {
   }
 
   initPostprocessing() {
-    // TODO add postprocess.js add() / remove()
-    // this._composer = new Composer(this._renderer);
+    this._composer = new EffectComposer(this._renderer, {
+      // stencilBuffer: true,
+			// depthTexture: true,
+    });
 
-    // if (!props.debug.postProcess.enabled) return;
-    // this._passes.push(new VignettePass({ reduction: 0.5 }));
-    // this._passes.push(new FXAAPass({}));
+    // Gui disable postprocess
+    gui.add(props.debug.postProcess, 'disabled').onChange(() => {
+      // TODO : disable all passes
+      this._passes.bloomPass.enabled = !props.debug.postProcess.disabled;
+
+      // RenderToScreen for the renderPass
+      this._composer.passes[0].renderToScreen = props.debug.postProcess.disabled;
+    });
+
+    // PASSES
+    const renderPass = new RenderPass(this.scene, this.currentCamera);
+    this._composer.addPass(renderPass);
+
+    // Bloom
+    this._passes.bloomPass = new BloomPass({
+      resolutionScale: 0.5,
+      intensity: 2.0,
+      distinction: 4.0,
+    });
+    this._passes.bloomPass.renderToScreen = true;
+    this._composer.addPass(this._passes.bloomPass);
   }
 
   add(mesh, _id) {
@@ -73,15 +100,9 @@ export default class Webgl {
   }
 
   update() {
-    if (props.debug.postProcess.enabled) {
-      this._composer.reset();
-      this._composer.renderer.clear();
-      this._composer.render(this.scene, this.camera);
-      let i;
-      for (i = this._passes.length - 1; i >= 0; i--) {
-        this._composer.pass(this._passes[i]);
-      }
-      this._composer.toScreen();
+    if (this._composer) {
+      this._composer.render(clock.getDelta());
+      return;
     }
 
     this._renderer.render(this.scene, this.currentCamera);
@@ -96,7 +117,7 @@ export default class Webgl {
 
     this._renderer.setSize(w, h);
 
-    if (props.debug.postProcess.enabled) {
+    if (!props.debug.postProcess.disabled || process.env.NODE_ENV === 'production') {
      this._composer.setSize(w, h);
     }
   }

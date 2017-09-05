@@ -3,7 +3,7 @@ const props = {
 
   debug: {
     postProcess: {
-      enabled: false,
+      disabled: false,
     },
     orbitControlsMainCamera: true,
     webglHelper: false,
