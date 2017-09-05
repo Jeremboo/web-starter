@@ -5,9 +5,9 @@ const props = {
     postProcess: {
       disabled: false,
     },
+    orbitControlsMainCamera: false,
     webglHelper: false,
     disableWebgl: false,
-    orbitControlsMainCamera: false,
   },
 };
 

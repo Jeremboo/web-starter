@@ -6,7 +6,6 @@ import props from 'core/props';
 class Gui extends GUI {
   constructor() {
     super();
-
     this.enabled = false;
     this.folders = [];
 
@@ -17,7 +16,6 @@ class Gui extends GUI {
   }
 
   toggleHide() {
-    // document.querySelector('.dg.ac').style.zIndex = 10;
     this.enabled = !this.enabled;
     GUI.toggleHide();
   }
@@ -72,5 +70,4 @@ class Gui extends GUI {
     return objectFolder;
   }
 }
-const gui = new Gui();
-export default gui;
+export default new Gui();

@@ -2,12 +2,11 @@ import {
   Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap,
   Clock,
 } from 'three';
-
-import OrbitControls from 'vendors/OrbitControls';
-
 import {
   EffectComposer, RenderPass, BloomPass,
 } from 'postprocessing';
+
+import OrbitControls from 'vendors/OrbitControls';
 
 import props from 'core/props';
 import gui from 'core/gui';
@@ -20,9 +19,10 @@ export default class Webgl {
     this.width = w;
     this.height = h;
     this.scene = new Scene();
+    // this.scene.fog = new Fog(0xFEFEFE, 0.5, 20);
 
     this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
-    this.camera.position.z = 100;
+    this.camera.position.set(0, 0, 50);
     this.currentCamera = this.camera;
 
     this._renderer = new WebGLRenderer({
@@ -30,8 +30,8 @@ export default class Webgl {
     });
     // this._renderer.setPixelRatio(window.devicePixelRatio || 1);
     this._renderer.setClearColor(0xFEFEFE, 1);
-    this._renderer.shadowMap.enabled = true;
-    this._renderer.shadowMap.type = PCFSoftShadowMap;
+    // this._renderer.shadowMap.enabled = true;
+    // this._renderer.shadowMap.type = PCFSoftShadowMap;
 
     this.dom = this._renderer.domElement;
 

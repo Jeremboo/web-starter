@@ -7,12 +7,9 @@ import vertexShader from 'shaders/example.v.glsl';
 import fragmentShader from 'shaders/example.f.glsl';
 
 
-
 export default class Exemple extends Object3D {
   constructor() {
     super();
-
-    gui.add(props, 'ROTATION_SPEED');
 
     const geometry = new TetrahedronGeometry(10, 0);
     const material = new ShaderMaterial({

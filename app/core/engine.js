@@ -10,6 +10,7 @@ import Webgl from 'core/Webgl';
 import gui from 'core/gui';
 import loop from 'core/loop';
 import props from 'core/props';
+import { loadAssets } from 'core/assets';
 
 import Helpers from 'objects/Helpers';
 import Exemple from 'objects/Exemple';
@@ -27,7 +28,6 @@ class Engine {
 
     this._initWebgl = this._initWebgl.bind(this);
     this._initObjects = this._initObjects.bind(this);
-    this._loadAssets = this._loadAssets.bind(this);
 
     this._resize = this._resize.bind(this);
   }
@@ -39,7 +39,7 @@ class Engine {
    */
   init() {
     return this._initWebgl()
-      .then(this._loadAssets)
+      .then(() => loadAssets)
       .then(this._initObjects)
       .then(() => {
         // HELPERS
@@ -57,7 +57,9 @@ class Engine {
           this.toggleHelper();
         }
 
-        // START
+        /** ****************
+        * START
+        ******************/
         loop.start();
       })
       .catch((e) => {
@@ -94,13 +96,6 @@ class Engine {
     });
   }
 
-  _loadAssets() {
-    return new Promise((resolve, reject) => {
-
-        resolve();
-    });
-  }
-
   _initObjects() {
     return new Promise((resolve) => {
       if (this.webgl) {
@@ -114,10 +109,12 @@ class Engine {
         // OBJECTS
         const exemple = new Exemple();
         this.webgl.add(exemple);
+
+        // GUI / HELPERS
+        gui.add(props, 'ROTATION_SPEED');
       } else {
         // If no GL
       }
-
       resolve();
     });
   }
