@@ -1,6 +1,6 @@
 import {
   Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap,
-  Clock,
+  Clock, Vector3,
 } from 'three';
 import {
   EffectComposer, RenderPass, BloomPass,
@@ -23,6 +23,7 @@ export default class Webgl {
 
     this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
     this.camera.position.set(0, 0, 50);
+    this.camera.lookAt(new Vector3(0, 0, 0));
     this.currentCamera = this.camera;
 
     this._renderer = new WebGLRenderer({
@@ -36,7 +37,7 @@ export default class Webgl {
     this.dom = this._renderer.domElement;
 
     if (props.debug.orbitControlsMainCamera && process.env.NODE_ENV !== 'production') {
-      this.controls = new OrbitControls(this.currentCamera, document.body);
+      this.controls = new OrbitControls(this.currentCamera, document.getElementById('app'));
     }
 
     this._composer = false;
@@ -58,14 +59,8 @@ export default class Webgl {
       // stencilBuffer: true,
 			// depthTexture: true,
     });
-    gui.add(props.debug.postProcess, 'disabled').onChange(() => {
-      // TODO : disable all passes
-      this._passes.bloomPass.enabled = !props.debug.postProcess.disabled;
 
-      // RenderToScreen for the renderPass
-      this._composer.passes[0].renderToScreen = props.debug.postProcess.disabled;
-    });
-
+    // *********
     // PASSES
     const renderPass = new RenderPass(this.scene, this.currentCamera);
     this._composer.addPass(renderPass);
@@ -78,6 +73,17 @@ export default class Webgl {
     });
     this._passes.bloomPass.renderToScreen = true;
     this._composer.addPass(this._passes.bloomPass);
+
+    // *********
+    // GUI
+    const postProcessFolder = gui.addFolder('PostProcess');
+    postProcessFolder.add(props.debug.postProcess, 'disabled').name('disable').onChange(() => {
+      // TODO : disable all passes
+      this._passes.bloomPass.enabled = !props.debug.postProcess.disabled;
+
+      // RenderToScreen for the renderPass
+      this._composer.passes[0].renderToScreen = props.debug.postProcess.disabled;
+    });
   }
 
   add(mesh, _id) {

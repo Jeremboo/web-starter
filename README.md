@@ -1,13 +1,6 @@
-# My web app starter kit with Webpack, React and Three.js
+# Webpack-react-threejs@1.0.0 - 07/09/2017
 
-Just a architecture to manage a web project with :
-
-- [Webpack]()
-- [Babel]()
-- [Stylus]()
-- [EsLint](http://eslint.org/) and [AirBnb EsLint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
-
-- [React]()
+Just a architecture to manage a web project with React and Three.js :
 
 ## Commands :
 
@@ -21,15 +14,19 @@ Just a architecture to manage a web project with :
 
 ## Details :
 
-- **Webpack with :**
+- [Three r87]()
+
+- [React 15.5.4]()
+
+- [Webpack 2.6.1]()
   - `dev`and `prod` environment
   - Auto reloading
   - ...
 
-- **Babel for using ES6.**
+- [Babel-cli 6.24.1]()
 
-- **Style Guide :**
+- [Stylus 0.54.5]()
 
-Follow the [AirBnb Javascript Style Guide](https://github.com/airbnb/javascript) with her
-Eslint. You can also follow her
-[AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+- [EsLint 3.19.0](http://eslint.org/)
+  - Following the [AirBnb EsLint 15.0.1](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) You can also follow her
+  [AirBnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react)

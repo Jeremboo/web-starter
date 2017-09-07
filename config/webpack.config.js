@@ -17,7 +17,9 @@ var config = {
       path.resolve(__dirname, '../app/main.js')
     ],
     resolve: {
-      alias: {},
+      alias: {
+        postprocessing: path.resolve(__dirname, '../node_modules/postprocessing/build/postprocessing.js')
+      },
     },
     output: {
         path: path.resolve(__dirname, '../public'),
@@ -48,7 +50,7 @@ var config = {
       rules: [
         {
           test: /\.jsx?$/,
-          exclude: node_modules,
+          include: path.resolve(__dirname, '../app/'),
           loader: 'babel-loader',
         },
         {
@@ -73,7 +75,7 @@ var config = {
         },
         {
           test: /\.json$/,
-          loader: 'json',
+          loader: 'json-loader',
           include: path.resolve(__dirname, '../app/assets/')
         },
         {

@@ -63,7 +63,7 @@ class Engine {
         loop.start();
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
       })
     ;
   }

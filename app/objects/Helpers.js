@@ -10,7 +10,6 @@ import gui from 'core/gui';
 export default class Helpers extends Object3D {
   constructor(webgl) {
     super();
-
     // GRID & AXIS
     this.gridHelper = new GridHelper(200, 200);
     this.add(this.gridHelper);
@@ -29,8 +28,8 @@ export default class Helpers extends Object3D {
     this.cameraHelper = new CameraHelper(webgl.currentCamera);
     this.add(this.cameraHelper);
     this.debugCamera = new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
-    this.debugCamera.position.z = 150;
+    this.debugCamera.position.set(webgl.camera.position.clone());
     webgl.add(this.debugCamera);
-    this.controlsDebugCamera = new OrbitControls(this.debugCamera, document.body);
+    this.controlsDebugCamera = new OrbitControls(this.debugCamera, document.getElementById('app'));
   }
 }

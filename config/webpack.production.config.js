@@ -6,11 +6,10 @@ var poststylus = require('poststylus');
 
 var node_modules = path.resolve(__dirname, '../node_modules');
 
-var basename = '/';
+var basename = '';
 
 module.exports = {
   entry:{
-
     app: [
       'babel-polyfill',
       path.resolve(__dirname, '../app/main.js'),
@@ -18,7 +17,9 @@ module.exports = {
     vendors: ['react', 'react-dom', 'react-router', 'history'],
   },
   resolve: {
-    alias: {},
+    alias: {
+      postprocessing: path.resolve(__dirname, '../node_modules/postprocessing/build/postprocessing.js'),
+    },
   },
   output: {
     path: path.resolve(__dirname, '../public'),
@@ -34,7 +35,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: node_modules,
+        include: path.resolve(__dirname, '../app/'),
         loader: 'babel-loader',
       },
       {
@@ -59,7 +60,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
         include: path.resolve(__dirname, '../app/assets/')
       },
       {
