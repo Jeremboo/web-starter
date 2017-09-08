@@ -48,15 +48,8 @@ var config = {
       rules: [
         {
           test: /\.jsx?$/,
-          exclude: node_modules,
+          include: path.resolve(__dirname, '../app/'),
           loader: 'babel-loader',
-          query: {
-            plugins: [
-              ['module-resolver', {
-                root: [path.resolve(__dirname, '../app/')],
-              }],
-            ],
-          },
         },
         {
           test: /\.(styl|css)$/,
@@ -80,7 +73,7 @@ var config = {
         },
         {
           test: /\.json$/,
-          loader: 'json',
+          loader: 'json-loader',
           include: path.resolve(__dirname, '../app/assets/')
         },
         {
@@ -117,8 +110,8 @@ var config = {
     }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../app/assets/index.html'),
-        // favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
-      })
+        favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.png'),
+      }),
     ]
 };
 

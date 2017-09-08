@@ -1,3 +1,16 @@
 {
-  "presets": ["react", "es2015"]
+  "plugins": [],
+  "presets": [
+    {
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": ["app"]
+          }
+        ]
+      ]
+    },
+    "react", "env"
+  ]
 }

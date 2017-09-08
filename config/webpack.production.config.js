@@ -33,15 +33,8 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: node_modules,
+        include: path.resolve(__dirname, '../app/'),
         loader: 'babel-loader',
-        query: {
-          plugins: [
-            ['module-resolver', {
-              root: [path.resolve(__dirname, '../app/')],
-            }],
-          ],
-        },
       },
       {
         test: /\.(styl|css)$/,
@@ -63,7 +56,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
         include: path.resolve(__dirname, '../app/assets/')
       },
       {
@@ -109,7 +102,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './app/assets/index.html',
-      // favicon: './app/assets/imgs/favicon.ico',
+      favicon: './app/assets/imgs/favicon.png',
     })
   ]
 };
