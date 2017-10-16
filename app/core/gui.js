@@ -6,17 +6,21 @@ import props from 'core/props';
 class Gui extends GUI {
   constructor() {
     super();
-    this.enabled = false;
     this.folders = [];
 
-    this.toggleHide();
+    this.toggle();
 
     this.addMesh = this.addMesh.bind(this);
-    this.toggleHide = this.toggleHide.bind(this);
+    this.addLight = this.addLight.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
-  toggleHide() {
-    this.enabled = !this.enabled;
+  toggle(visible) {
+    if (visible) {
+      this.domElement.offsetParent.style.zIndex = 10;
+    } else {
+      this.domElement.offsetParent.style.zIndex = 0;
+    }
     GUI.toggleHide();
   }
 
@@ -30,7 +34,8 @@ class Gui extends GUI {
   addLight(light, name = `Light-${light.uuid}`, params) {
     props.rotation = props.rotation || false;
     const lightFolder = this._addObject3D(light, name, params);
-    if (lightFolder && light.power) lightFolder.add(light, 'power', 0, 25.132741229);
+    if (light.power) lightFolder.add(light, 'power', 0, 25.132741229);
+    if (light.intensity) lightFolder.add(light, 'intensity', 0, 1);
   }
 
   // add mesh to move him
@@ -53,9 +58,9 @@ class Gui extends GUI {
 
     if (position) {
       const posFolder = objectFolder.addFolder('Position');
-      posFolder.add(object.position, 'x', -50, 50);
-      posFolder.add(object.position, 'y', -50, 50);
-      posFolder.add(object.position, 'z', -50, 50);
+      posFolder.add(object.position, 'x', -100, 100);
+      posFolder.add(object.position, 'y', -100, 100);
+      posFolder.add(object.position, 'z', -100, 100);
     }
 
     if (rotation) {

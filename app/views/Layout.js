@@ -12,7 +12,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import engine from 'core/engine';
+import props from 'core/props';
+import helper from 'core/helper';
+import loop from 'core/loop';
+
+import engine from 'webgl/engine';
 
 import Loader from 'components/loader';
 
@@ -28,10 +32,24 @@ export default class Layout extends Component {
   }
 
   componentDidMount() {
+    loop.start();
+
     engine.init()
-    .then(() => {
-      this.setState({ loading: false });
-    });
+      .then(() => {
+        // HELPER
+        // TODO make code combinaison
+        if (process.env.NODE_ENV === 'development') {
+          helper.enable();
+          // Directly visible
+          if (props.debug.helper) {
+            helper.toggle();
+          }
+        }
+
+        // HIDE LOADER
+        this.setState({ loading: false });
+      })
+    ;
   }
 
   render() {

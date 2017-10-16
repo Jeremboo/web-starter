@@ -1,30 +1,29 @@
 import {
-  PointLight, AmbientLight,
-  AxisHelper, GridHelper, PointLightHelper, Vector3,
-  PerspectiveCamera, CameraHelper
+  PointLight, AmbientLight, DirectionalLight, DirectionalLightHelper,
+  Mesh, PlaneGeometry, MeshLambertMaterial, Color,
+  DoubleSide,
 } from 'three';
 
 import OrbitControls from 'vendors/OrbitControls';
 
-import Webgl from 'core/Webgl';
-import gui from 'core/gui';
-import loop from 'core/loop';
 import props from 'core/props';
-import { loadAssets } from 'core/assets';
+import gui from 'core/gui';
+import helper from 'core/helper';
+import { radians } from 'core/utils';
 
-import Helpers from 'objects/Helpers';
-import Exemple from 'objects/Exemple';
+import { loadAssets } from 'webgl/assets';
+import Webgl from 'webgl/Webgl';
+
+import Helpers from 'webgl/objects/helpers';
+import Example from 'webgl/objects/Example';
 
 class Engine {
   constructor() {
     this.webgl = false;
     this.helpers = false;
-    this.helperEnabled = false;
     this.onResize = f => f;
-    this.onToggleHelper = f => f;
 
     this.init = this.init.bind(this);
-    this.toggleHelper = this.toggleHelper.bind(this);
 
     this._initWebgl = this._initWebgl.bind(this);
     this._initObjects = this._initObjects.bind(this);
@@ -41,31 +40,10 @@ class Engine {
     return this._initWebgl()
       .then(() => loadAssets)
       .then(this._initObjects)
-      .then(() => {
-        // HELPERS
-        // TODO make code combinaison
-        if (process.env.NODE_ENV === 'development') {
-          this.helpers = new Helpers(this.webgl);
-          document.addEventListener('keydown', (e) => {
-            if (e.keyCode === 192) {
-              this.toggleHelper();
-            }
-          });
-        }
-
-        if (props.debug.webglHelper && process.env.NODE_ENV !== 'production') {
-          this.toggleHelper();
-        }
-
-        /** ****************
-        * START
-        ******************/
-        loop.start();
-      })
       .catch((e) => {
         console.error(e);
       })
-    ;
+      ;
   }
 
   _initWebgl() {
@@ -102,16 +80,39 @@ class Engine {
         // TODO add main object add scene
         // TODO scene.js
 
-        // LIGHT
-        const ambiantLight = new AmbientLight(0xffffff, 0.5);
+        /**
+         * LIGHTS
+         */
+        const ambiantLight = new AmbientLight(0xffffff, 1);
         this.webgl.add(ambiantLight);
+        const directionalLight = new DirectionalLight(0xfff7d7, 0.9);
+        directionalLight.position.set(0, 70, 10);
+        this.webgl.add(directionalLight);
+
 
         // OBJECTS
-        const exemple = new Exemple();
-        this.webgl.add(exemple);
+        const example = new Example();
+        example.position.y = 10;
+        this.webgl.add(example);
+
+        // plane
+        this.plane = new Mesh(new PlaneGeometry(500, 500, 32), new MeshLambertMaterial({ color: 0xffffff, side: DoubleSide }));
+        this.plane.rotation.x = -radians(90);
+        this.webgl.add(this.plane);
 
         // GUI / HELPERS
-        gui.add(props, 'ROTATION_SPEED');
+
+        /**
+         * HELPERS
+         */
+        if (process.env.NODE_ENV === 'development') {
+          // webgl helpers
+          this.helpers = new Helpers(this.webgl);
+          helper.addToggle(this.helpers.toggle);
+          // lights
+          gui.add(ambiantLight, 'intensity', 0, 1).name('Ambient intensity');
+          this.helpers.addLight(directionalLight, DirectionalLightHelper, 'DirectionalLight');
+        }
       } else {
         // If no GL
       }
@@ -121,31 +122,26 @@ class Engine {
 
   /**
    ****************
-   * HELPER
+   * CONTROLS
    ****************
    */
-  toggleHelper() {
-    this.helperEnabled = !this.helperEnabled;
-    if (this.helperEnabled) {
-      // this.webgl.dom.style.zIndex = 9;
-      this.webgl._renderer.setClearColor(0xaaaaaa, 1);
-      this.webgl.add(this.helpers);
+  startIntroduction() {
+    return new Promise((resolve, reject) => {
+      if (!this.webgl) resolve();
 
-      this.webgl.currentCamera = this.helpers.debugCamera;
-    } else {
-      // this.webgl.dom.style.zIndex = -1;
-      this.webgl._renderer.setClearColor(0xfefefe, 1);
-      this.webgl.remove(this.helpers);
-
-      this.webgl.currentCamera = this.webgl.camera;
-    }
-
-    if (this.webgl._composer) {
-      this.webgl._composer.passes[0].camera = this.webgl.currentCamera;
-    }
-
-    this.onToggleHelper(this.helperEnabled);
-    gui.toggleHide();
+      this.title.show()
+        .then(this.label.show)
+        .then(() => {
+          this.title.hide();
+          this.bottle.show();
+          this.label.goToTheBottle();
+          // TODO Animate the camera on rotation and return them
+        })
+        .then(() => {
+          console.log('END');
+        })
+        ;
+    });
   }
 
   /**

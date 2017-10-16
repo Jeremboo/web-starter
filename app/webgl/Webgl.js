@@ -1,6 +1,6 @@
 import {
   Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap,
-  Clock, Vector3,
+  Fog, Clock, Vector3,
 } from 'three';
 import {
   EffectComposer, RenderPass, BloomPass,
@@ -19,18 +19,19 @@ export default class Webgl {
     this.width = w;
     this.height = h;
     this.scene = new Scene();
-    // this.scene.fog = new Fog(0xFEFEFE, 0.5, 20);
+    this.scene.fog = new Fog(0xcccccc, 0.5, 150);
 
     this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
-    this.camera.position.set(0, 0, 50);
+    this.camera.position.set(0, 50, 100);
     this.camera.lookAt(new Vector3(0, 0, 0));
     this.currentCamera = this.camera;
 
     this._renderer = new WebGLRenderer({
       antialias: true,
+      // alpha: true,
     });
     // this._renderer.setPixelRatio(window.devicePixelRatio || 1);
-    this._renderer.setClearColor(0xFEFEFE, 1);
+    this._renderer.setClearColor(0xcccccc, 1);
     // this._renderer.shadowMap.enabled = true;
     // this._renderer.shadowMap.type = PCFSoftShadowMap;
 
@@ -110,6 +111,12 @@ export default class Webgl {
     }
 
     this._renderer.render(this.scene, this.currentCamera);
+  }
+
+  changeCamera(camera) {
+    this.currentCamera = camera;
+    this.resize(this.width, this.height);
+    if (this._composer) this._composer.passes[0].camera = this.currentCamera;
   }
 
   resize(w, h) {
