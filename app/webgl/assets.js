@@ -43,30 +43,20 @@ export const loadAssets = new Promise((resolve, reject) => {
   // Load all assets before resolving
   const promises = [];
   let onPromiseComplete = f => f;
-  // OBJS
-  JSON.parse(JSON.stringify(assets.objects), (key, value) => {
-    if (key === '') return;
-    promises.push(loadJSON(value).then((data) => {
-      onPromiseComplete();
-      assets.objects[key] = data;
-    }));
-  });
-  // TEXTURES
-  JSON.parse(JSON.stringify(assets.textures), (key, value) => {
-    if (key === '') return;
-    promises.push(loadTexture(value).then((data) => {
-      onPromiseComplete();
-      assets.textures[key] = data;
-    }));
-  });
-  // FONTS
-  JSON.parse(JSON.stringify(assets.fonts), (key, value) => {
-    if (key === '') return;
-    promises.push(loadFont(value).then((data) => {
-      onPromiseComplete();
-      assets.fonts[key] = data;
-    }));
-  });
+
+  const parseAssets = (assetObject, loader) => {
+    JSON.parse(JSON.stringify(assetObject), (key, value) => {
+      if (key === '') return;
+      promises.push(loader(value).then((data) => {
+        onPromiseComplete();
+        assetObject[key] = data;
+      }));
+    });
+  };
+
+  parseAssets(assets.objects, loadJSON);
+  parseAssets(assets.textures, loadTexture);
+  parseAssets(assets.fonts, loadFont);
 
   // // Init the loading value props
   // const nbrOfAssetsToLoad = promises.length;
