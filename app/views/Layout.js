@@ -35,9 +35,9 @@ export default class Layout extends Component {
     // Init the webgl (freeze)
     await engine.initWebgl()
     loop.start()
-    await this.updateAnim('loader', true)
+    // await this.updateAnim('loader', true)
     await engine.loadAssets() // TODO pass callback to update the loader value
-    await this.updateAnim('loader', false)
+    // await this.updateAnim('loader', false)
     // FREEZE
     await engine.initObjects()
     // START DOM ANIMATION

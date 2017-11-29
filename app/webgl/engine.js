@@ -23,10 +23,10 @@ class Engine {
     this.helpers = false;
     this.onResize = f => f;
 
-    this.init = this.init.bind(this);
+    // this.init = this.init.bind(this);
 
-    this._initWebgl = this._initWebgl.bind(this);
-    this._initObjects = this._initObjects.bind(this);
+    this.initWebgl = this.initWebgl.bind(this);
+    this.initObjects = this.initObjects.bind(this);
 
     this._resize = this._resize.bind(this);
   }
