@@ -60,9 +60,14 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json-loader',
-        include: path.resolve(__dirname, '../app/assets/')
+        use: 'file-loader?name=objects/[name].[ext]',
+        include: path.resolve(__dirname, '../app/assets/objects')
       },
+      // {
+      //   test: /\.json$/,
+      //   loader: 'json-loader',
+      //   include: path.resolve(__dirname, '../app/assets/')
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: 'file-loader?name=imgs/[name].[ext]',
