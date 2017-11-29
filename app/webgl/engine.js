@@ -36,17 +36,17 @@ class Engine {
    * INIT
    ****************
    */
-  init() {
-    return this._initWebgl()
-      .then(() => loadAssets)
-      .then(this._initObjects)
-      .catch((e) => {
-        console.error(e);
-      })
-      ;
-  }
+  // init() {
+  //   return this._initWebgl()
+  //     .then(() => loadAssets)
+  //     .then(this._initObjects)
+  //     .catch((e) => {
+  //       console.error(e);
+  //     })
+  //     ;
+  // }
 
-  _initWebgl() {
+  initWebgl() {
     return new Promise((resolve, reject) => {
       if (!props.debug.disableWebgl || process.env.NODE_ENV === 'production') {
         try {
@@ -74,11 +74,13 @@ class Engine {
     });
   }
 
-  _initObjects() {
+  loadAssets() {
+    return loadAssets();
+  }
+
+  initObjects() {
     return new Promise((resolve) => {
       if (this.webgl) {
-        // TODO add main object add scene
-        // TODO scene.js
 
         /**
          * LIGHTS
@@ -100,8 +102,6 @@ class Engine {
         this.plane.rotation.x = -radians(90);
         this.webgl.add(this.plane);
 
-        // GUI / HELPERS
-
         /**
          * HELPERS
          */
@@ -113,6 +113,16 @@ class Engine {
           gui.add(ambiantLight, 'intensity', 0, 1).name('Ambient intensity');
           this.helpers.addLight(directionalLight, DirectionalLightHelper, 'DirectionalLight');
         }
+
+        /**
+        * FIRST OBJECT RENDER
+        */
+        // To instanciate fisrt time all hidden objects into the scene
+        // this.webgl.setFirstMeshesRender([])
+        /**
+        * START
+        */
+        this.webgl.start()
       } else {
         // If no GL
       }

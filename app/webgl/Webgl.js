@@ -51,7 +51,6 @@ export default class Webgl {
     this.update = this.update.bind(this);
     this.resize = this.resize.bind(this);
 
-    loop.add('0000', this.update);
     this.resize(w, h);
   }
 
@@ -77,14 +76,24 @@ export default class Webgl {
 
     // *********
     // GUI
-    const postProcessFolder = gui.addFolder('PostProcess');
-    postProcessFolder.add(props.debug.postProcess, 'disabled').name('disable').onChange(() => {
-      // TODO : disable all passes
-      this._passes.bloomPass.enabled = !props.debug.postProcess.disabled;
+    if (process.env.NODE_ENV !== 'production') {
+      const postProcessFolder = gui.addFolder('PostProcess');
+      postProcessFolder.add(props.debug.postProcess, 'disabled').name('disable').onChange(() => {
+        for (let i = 1; i < this._composer.passes.length; i++) {
+          this._composer.passes[i].enabled = !props.debug.postProcess.disabled
+        }
+        // RenderToScreen for the renderPass
+        this._composer.passes[0].renderToScreen = props.debug.postProcess.disabled
+      });
+    }
+  }
 
-      // RenderToScreen for the renderPass
-      this._composer.passes[0].renderToScreen = props.debug.postProcess.disabled;
-    });
+  start() {
+    loop.add('0000', this.update);
+  }
+
+  stop() {
+    loop.remove('0000');
   }
 
   add(mesh, _id) {
@@ -131,5 +140,19 @@ export default class Webgl {
     if (!props.debug.postProcess.disabled || process.env.NODE_ENV === 'production') {
      this._composer.setSize(w, h);
     }
+  }
+
+  // Set an array of Meshes in the scene to compute them a first time.
+  setFirstMeshesRender(meshes) {
+    let i = 0;
+    const l = meshes.length;
+    for (i = 0; i < l; i++) {
+      this.add(meshes[i]);
+    }
+    this.update();
+    for (i = 0; i < l; i++) {
+      this.remove(meshes[i]);
+    }
+    this.update();
   }
 }

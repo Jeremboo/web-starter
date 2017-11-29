@@ -1,4 +1,4 @@
-# Webpack-react-threejs@1.1.0 - 16/10/2017
+# Webpack-react-threejs@1.2.0 - 29/11/2017
 
 Just a architecture to manage a web project with React and Three.js :
 

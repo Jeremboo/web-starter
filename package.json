@@ -1,6 +1,6 @@
 {
   "name": "webpack-react-threejs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "My organization for web developpement with React, Webpack and threejs.",
   "main": "app/main.js",
   "repository": {

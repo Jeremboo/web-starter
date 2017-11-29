@@ -21,8 +21,8 @@ import engine from 'webgl/engine';
 import Loader from 'components/loader';
 
 export default class Layout extends Component {
-  constructor(props) {
-    super(props);
+  constructor(_props) {
+    super(_props);
 
     this.webgl = false;
 
@@ -31,25 +31,17 @@ export default class Layout extends Component {
     };
   }
 
-  componentDidMount() {
-    loop.start();
-
-    engine.init()
-      .then(() => {
-        // HELPER
-        // TODO make code combinaison
-        if (process.env.NODE_ENV === 'development') {
-          helper.enable();
-          // Directly visible
-          if (props.debug.helper) {
-            helper.toggle();
-          }
-        }
-
-        // HIDE LOADER
-        this.setState({ loading: false });
-      })
-    ;
+  async componentDidMount() {
+    // Init the webgl (freeze)
+    await engine.initWebgl()
+    loop.start()
+    await this.updateAnim('loader', true)
+    await engine.loadAssets() // TODO pass callback to update the loader value
+    await this.updateAnim('loader', false)
+    // FREEZE
+    await engine.initObjects()
+    // START DOM ANIMATION
+    this.setState({ loading: false })
   }
 
   render() {
