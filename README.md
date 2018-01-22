@@ -1,4 +1,4 @@
-# Webpack-react@1.1.0 - 22/01/2018
+# Webpack-react@1.2.0 - 22/01/2018
 
 Just a architecture to manage a web project in React
 

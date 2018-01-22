@@ -111,7 +111,7 @@ module.exports = {
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../app/assets/index.html'),
-        favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
+        favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.png'),
       }),
     ]
 };
