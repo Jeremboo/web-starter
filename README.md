@@ -32,4 +32,5 @@ Just a architecture to manage a web project in React
 
 ## TODO
 
-- More unit test config
+- Fix css ExtractTextPlugin
+- minify webpack.production.config.js

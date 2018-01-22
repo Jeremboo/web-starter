@@ -14,7 +14,7 @@ module.exports = {
       'babel-polyfill',
       path.resolve(__dirname, '../app/main.js'),
     ],
-    vendors: ['react', 'react-dom', 'react-router', 'history'],
+    vendors: ['react', 'react-dom'],
   },
   resolve: {
     alias: {},
@@ -77,8 +77,6 @@ module.exports = {
         loader: 'file?name=[name].[ext]',
         include: path.resolve(__dirname, '../app/assets')
       },
-      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'raw-loader' },
-      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'glslify-loader' }
     ],
   },
   plugins: [
