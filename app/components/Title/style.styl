@@ -8,4 +8,11 @@
 h1 {
   color: fontColor;
   text-align: center;
+
+  +mq($until: 'laptop') {
+    font-size: remify(30px);
+  }
+  +mq($until: 'tablet') {
+    font-size: remify(15px);  
+  }
 }

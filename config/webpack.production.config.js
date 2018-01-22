@@ -9,8 +9,8 @@ var node_modules = path.resolve(__dirname, '../node_modules');
 var basename = '';
 
 module.exports = {
-  entry: {
-     app: [
+  entry:{
+    app: [
       'babel-polyfill',
       path.resolve(__dirname, '../app/main.js'),
     ],
@@ -33,15 +33,8 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: node_modules,
+        include: path.resolve(__dirname, '../app/'),
         loader: 'babel-loader',
-        query: {
-          plugins: [
-            ['module-resolver', {
-              root: [path.resolve(__dirname, '../app/')],
-            }],
-          ],
-        },
       },
       {
         test: /\.(styl|css)$/,
@@ -49,21 +42,24 @@ module.exports = {
           'style-loader',
           {
             loader: 'css-loader',
+            options: { sourceMap: true },
           },
           {
             loader: 'stylus-loader',
             options: {
               import: [
+                path.resolve(__dirname, '../node_modules/@ardentic/stylus-mq/mq.styl'),
                 path.resolve(__dirname, '../app/style/variables.styl'),
                 path.resolve(__dirname, '../app/style/mixins.styl'),
               ],
+              sourceMap: true,
             },
           },
         ],
       },
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
         include: path.resolve(__dirname, '../app/assets/')
       },
       {
@@ -78,15 +74,21 @@ module.exports = {
       },
       {
         test: /\.pdf$/,
-        loader: 'file?name=[hash].[ext]',
+        loader: 'file?name=[name].[ext]',
         include: path.resolve(__dirname, '../app/assets')
       },
+      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'raw-loader' },
+      { test: /\.(glsl|frag|vert)$/, exclude: node_modules, loader: 'glslify-loader' }
     ],
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
+      debug: true,
+      options: {
+        stylus: {
+          use: [poststylus(['autoprefixer'])],
+        },
+      },
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
@@ -108,8 +110,8 @@ module.exports = {
       allChunks: true,
     }),
     new HtmlWebpackPlugin({
-      template: './app/assets/index.html',
-      // favicon: './app/assets/imgs/favicon.ico',
-    })
+      template: path.resolve(__dirname, '../app/assets/index.html'),
+      favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
+    }),
   ]
 };

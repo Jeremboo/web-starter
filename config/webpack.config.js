@@ -11,7 +11,7 @@ var ipAdress = ip.address() + ':' + port;
 var myLocalIp = 'http://' + ipAdress + '/';
 var basename = '';
 
-var config = {
+module.exports = {
     entry: [
       'babel-polyfill',
       path.resolve(__dirname, '../app/main.js')
@@ -28,7 +28,7 @@ var config = {
     externals: {
       'react/addons': true,
       'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': true
+      'react/lib/ReactContext': true,
     },
     devtool: "eval-source-map",
     devServer: {
@@ -48,15 +48,8 @@ var config = {
       rules: [
         {
           test: /\.jsx?$/,
-          exclude: node_modules,
+          include: path.resolve(__dirname, '../app/'),
           loader: 'babel-loader',
-          query: {
-            plugins: [
-              ['module-resolver', {
-                root: [path.resolve(__dirname, '../app/')],
-              }],
-            ],
-          },
         },
         {
           test: /\.(styl|css)$/,
@@ -70,6 +63,7 @@ var config = {
               loader: 'stylus-loader',
               options: {
                 import: [
+                  path.resolve(__dirname, '../node_modules/@ardentic/stylus-mq/mq.styl'),
                   path.resolve(__dirname, '../app/style/variables.styl'),
                   path.resolve(__dirname, '../app/style/mixins.styl'),
                 ],
@@ -80,22 +74,22 @@ var config = {
         },
         {
           test: /\.json$/,
-          loader: 'json',
+          loader: 'json-loader',
           include: path.resolve(__dirname, '../app/assets/')
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/,
-          use: 'file-loader?name=imgs/[hash].[ext]',
+          use: 'file-loader?name=imgs/[name].[ext]',
           include: path.resolve(__dirname, '../app/assets/imgs'),
         },
         {
           test: /\.(eot|svg|ttf|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: 'file-loader?name=fonts/[hash].[ext]',
+          use: 'file-loader?name=fonts/[name].[ext]',
           include: path.resolve(__dirname, '../app/assets/fonts'),
         },
         {
           test: /\.pdf$/,
-          loader: 'file?name=[hash].[ext]',
+          loader: 'file?name=[name].[ext]',
           include: path.resolve(__dirname, '../app/assets')
         },
       ],
@@ -110,16 +104,14 @@ var config = {
         },
       }),
       new webpack.DefinePlugin({
-      'process.env':{
-        'NODE_ENV': JSON.stringify('development'),
-        'BASENAME': JSON.stringify(basename),
-      },
-    }),
+        'process.env':{
+          'NODE_ENV': JSON.stringify('development'),
+          'BASENAME': JSON.stringify(basename),
+        },
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../app/assets/index.html'),
-        // favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
-      })
+        favicon: path.resolve(__dirname, '../app/assets/imgs/favicon.ico'),
+      }),
     ]
 };
-
-module.exports = config;
