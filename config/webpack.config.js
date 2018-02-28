@@ -74,7 +74,7 @@ var config = {
           ],
         },
         {
-          test: /\.(json|bin)$/,
+          test: /\.(json|bin|obj|mtl)$/,
           use: 'file-loader?name=objects/[name].[ext]',
           include: path.resolve(__dirname, '../app/assets/objects')
         },
