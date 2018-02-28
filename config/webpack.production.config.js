@@ -59,7 +59,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.json$/,
+        test: /\.(json|bin)$/,
         use: 'file-loader?name=objects/[name].[ext]',
         include: path.resolve(__dirname, '../app/assets/objects')
       },

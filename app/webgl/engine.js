@@ -11,7 +11,7 @@ import gui from 'core/gui';
 import helper from 'core/helper';
 import { radians } from 'core/utils';
 
-import { loadAssets } from 'webgl/assets';
+import Assets from 'webgl/AssetsManager';
 import Webgl from 'webgl/Webgl';
 
 import Helpers from 'webgl/objects/helpers';
@@ -75,13 +75,12 @@ class Engine {
   }
 
   loadAssets() {
-    return loadAssets();
+    return Assets.loadAll();
   }
 
   initObjects() {
     return new Promise((resolve) => {
       if (this.webgl) {
-
         /**
          * LIGHTS
          */
@@ -122,7 +121,7 @@ class Engine {
         /**
         * START
         */
-        this.webgl.start()
+        this.webgl.start();
       } else {
         // If no GL
       }
